@@ -68,7 +68,7 @@
   }
 
   .html {
-    height: 6em;
+    height: 9em;
     overflow-y: auto;
     border: 1px solid #ccc;
     border-top: none;
