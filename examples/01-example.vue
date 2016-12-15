@@ -72,5 +72,6 @@
     overflow-y: auto;
     border: 1px solid #ccc;
     border-top: none;
+    resize: vertical;
   }
 </style>
