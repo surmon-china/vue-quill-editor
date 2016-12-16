@@ -20,7 +20,7 @@
                       @focus="onEditorFocus($event)"
                       @ready="onEditorReady($event)">
         </quill-editor>
-        <div class="html" v-html="content"></div>
+        <div class="html ql-editor" v-html="content"></div>
       </div>
     </md-card-media>
   </md-card>
