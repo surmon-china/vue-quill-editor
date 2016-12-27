@@ -122,8 +122,6 @@ export default {
 
 # More Config
 
-[Code example](https://github.com/surmon-china/vue-codemirror/tree/master/example)
-
 [Api docs](https://quilljs.com/docs/quickstart/)
 
 
