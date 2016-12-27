@@ -10,6 +10,10 @@
 # Vue-Quill-Editor
 🍡Quill editor component for Vue2，基于Quill、适用于Vue2的富文本编辑器。
 
+> ### v1.1.0
+> 修复webpack UglifyJsPlugin中的报错Bug
+
+
 # Example
 [Demo Page](https://surmon-china.github.io/vue-quill-editor/)
 
