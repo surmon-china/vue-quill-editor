@@ -4,7 +4,7 @@
  */
 
 window.Quill = require('quill/dist/quill.js')
-const quillEditor = require('./editor.vue')
+var quillEditor = require('./editor.vue')
 const VueQuillEditor = {
   Quill: Quill,
   quillEditor: quillEditor,
