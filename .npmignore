@@ -1,5 +1,6 @@
 node_modules
 npm-debug.log
 examples
+modules
 nuxt-ssr-example
 .github

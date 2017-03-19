@@ -29,6 +29,7 @@
   import { ImageResize } from '../modules/ImageResize.js'
   Quill.register('modules/imageImport', ImageImport)
   Quill.register('modules/imageResize', ImageResize)
+  
   export default {
     data() {
       return {

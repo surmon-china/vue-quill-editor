@@ -35,13 +35,13 @@
     },
     methods: {
       onEditorBlur(editor) {
-        // console.log('editor blur!', editor)
+        console.log('editor blur!', editor)
       },
       onEditorFocus(editor) {
-        // console.log('editor focus!', editor)
+        console.log('editor focus!', editor)
       },
       onEditorReady(editor) {
-        // console.log('editor ready!', editor)
+        console.log('editor ready!', editor)
       }
     },
     computed: {
@@ -50,7 +50,7 @@
       }
     },
     mounted() {
-      // console.log('this is my editor', this.editor)
+      console.log('this is my editor', this.editor)
       setTimeout(() => {
         this.content = '<h1>Example 1 changed!</h1>'
       }, 1800)
