@@ -9,6 +9,7 @@
 
 # Vue-Quill-Editor
 🍡Quill editor component for Vue2, support SPA and SSR.
+
 基于Quill、适用于Vue2的富文本编辑器，支持服务端渲染和单页应用。
 
 
@@ -64,10 +65,10 @@ export default {
 
 ### Use the difference（使用方法的区别）
 
-*SSR and the only difference in the use of the SPA:*
-SPA uses the `component`, find quill instance by `ref attribute`.
-SSR use `directive`, find quill instance by `directive arg`.
-Other configurations, events are the same.
+**SSR and the only difference in the use of the SPA:**
+- SPA uses the `component`, find quill instance by `ref attribute`.
+- SSR use `directive`, find quill instance by `directive arg`.
+- Other configurations, events are the same.
 
 ### Use in SSR
 
@@ -167,9 +168,9 @@ Other configurations, events are the same.
 ```
 
 # Some extend code of quill
-[Quill - issues - Option to insert an image from a URL](https://github.com/quilljs/quill/issues/893)
-[Quill - issues - Image Resize](https://github.com/quilljs/quill/issues/104)
-[Quill - Modules - ImageImport and ImageResize](https://www.webpackbin.com/bins/-Ket3Oz1330Cy0MbddU3)
+- [Quill - issues - Option to insert an image from a URL](https://github.com/quilljs/quill/issues/893)
+- [Quill - issues - Image Resize](https://github.com/quilljs/quill/issues/104)
+- [Quill - Modules - ImageImport and ImageResize](https://www.webpackbin.com/bins/-Ket3Oz1330Cy0MbddU3)
 
 
 # Quill Config
