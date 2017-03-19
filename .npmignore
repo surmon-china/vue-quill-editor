@@ -1,5 +1,5 @@
-node_modules/*
+node_modules
 npm-debug.log
 examples
-/examples
-examples/*
+nuxt-ssr-example
+.github

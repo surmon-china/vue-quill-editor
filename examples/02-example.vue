@@ -2,11 +2,9 @@
   <md-card>
     <md-card-actions v-md-ink-ripple>
       <div class="md-subhead">
-        <span>02 Example</span>
+        <span>02 Example (theme bubble)</span>
       </div>
-      <md-button class="md-icon-button"
-                 target="_blank"
-                 href="https://github.com/surmon-china/vue-quill-editor/tree/master/examples/02-example.vue">
+      <md-button class="md-icon-button" target="_blank" href="https://github.com/surmon-china/vue-quill-editor/tree/master/examples/02-example.vue">
         <md-icon>code</md-icon>
       </md-button>
     </md-card-actions>
@@ -16,7 +14,7 @@
         <quill-editor class="editor-example"
                       ref="myTextEditor"
                       :content="content"
-                      :config="editorOption"
+                      :options="editorOption"
                       @change="onEditorChange($event)">
         </quill-editor>
         <div class="html ql-editor" v-html="content"></div>
@@ -30,7 +28,7 @@
     data() {
       return {
         name: 'base-example',
-        content: '<h2>I am Example</h2>',
+        content: '<h2>I am Example 2</h2>',
         editorOption: {
           theme: 'bubble',
           placeholder: "输入任何内容，支持html",
@@ -61,7 +59,7 @@
       }
     },
     mounted() {
-      console.log('this is my editor', this.editor)
+      // console.log('this is my editor', this.editor)
     }
   }
 </script>

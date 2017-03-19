@@ -16,20 +16,20 @@
         _content: '',
         defaultModules: {
           toolbar: [
-            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+            ['bold', 'italic', 'underline', 'strike'],
             ['blockquote', 'code-block'],
-            [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+            [{ 'header': 1 }, { 'header': 2 }],
             [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-            [{ 'direction': 'rtl' }],                         // text direction
-            [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+            [{ 'script': 'sub'}, { 'script': 'super' }],
+            [{ 'indent': '-1'}, { 'indent': '+1' }],
+            [{ 'direction': 'rtl' }],
+            [{ 'size': ['small', false, 'large', 'huge'] }],
             [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+            [{ 'color': [] }, { 'background': [] }],
             [{ 'font': [] }],
             [{ 'align': [] }],
-            ['clean'],                                         // remove formatting button
-            ['link', 'image', 'video']                         // link and image, video
+            ['clean'],
+            ['link', 'image', 'video']
           ]
         }
       }
@@ -37,7 +37,7 @@
     props: {
       content: String,
       value: String,
-      config: {
+      options: {
         type: Object,
         required: false,
         default() {
@@ -49,75 +49,80 @@
       this.initialize()
     },
     beforeDestroy() {
-      // 作者说了，等垃圾回收，不必显式清理
-      this.quillEditor = null
+      this.quill = null
     },
     methods: {
       initialize() {
         if (this.$el) {
           let self = this
-          self.quillEditor = new Quill(self.$el, Object.assign({
+          self.quill = new Quill(self.$el, Object.assign({
             modules: self.defaultModules,
             placeholder: 'Insert text here ...',
             readOnly: false,
             theme: 'snow',
             boundary: document.body
-          }, self.config || {}))
+          }, self.options || {}))
 
           // set editor content
           if (self.value || self.content) {
-            self.quillEditor.pasteHTML(self.value || self.content)
+            self.quill.pasteHTML(self.value || self.content)
           }
 
           // mark model as touched if editor lost focus
-          self.quillEditor.on('selection-change', (range) => {
+          self.quill.on('selection-change', (range) => {
             if (!range) {
-              self.$emit('blur', self.quillEditor)
+              self.$emit('blur', self.quill)
             } else {
-              self.$emit('focus', self.quillEditor)
+              self.$emit('focus', self.quill)
             }
           })
 
           // update model if text changes
-          self.quillEditor.on('text-change', (delta, oldDelta, source) => {
+          self.quill.on('text-change', (delta, oldDelta, source) => {
             let html = self.$el.children[0].innerHTML
-            const text = self.quillEditor.getText()
+            const text = self.quill.getText()
             if (html === '<p><br></p>') html = ''
             self._content = html
             self.$emit('input', self._content)
             self.$emit('change', {
-              editor: self.quillEditor,
+              editor: self.quill,
               html: html,
               text: text
             })
           })
 
-          // 广播事件
-          self.$emit('ready', self.quillEditor)
+          // emit ready
+          self.$emit('ready', self.quill)
         }
       }
     },
     watch: {
       'content'(newVal, oldVal) {
-        if (this.quillEditor) {
+        if (this.quill) {
           if (!!newVal && newVal !== this._content) {
             this._content = newVal
-            this.quillEditor.pasteHTML(newVal)
+            this.quill.pasteHTML(newVal)
           } else if(!newVal) {
-            this.quillEditor.setText('')
+            this.quill.setText('')
           }
         }
       },
       'value'(newVal, oldVal) {
-        if (this.quillEditor) {
+        if (this.quill) {
           if (newVal !== this._content) {
             this._content = newVal
-            this.quillEditor.pasteHTML(newVal)
+            this.quill.pasteHTML(newVal)
           } else if(!newVal) {
-            this.quillEditor.setText('')
+            this.quill.setText('')
           }
         }
       }
     }
   }
 </script>
+
+<style>
+  .quill-editor img {
+    max-width: 100%;
+  }
+</style>

@@ -2,11 +2,9 @@
   <md-card>
     <md-card-actions v-md-ink-ripple>
       <div class="md-subhead">
-        <span>01 Example</span>
+        <span>01 Example (theme snow)</span>
       </div>
-      <md-button class="md-icon-button"
-                 target="_blank"
-                 href="https://github.com/surmon-china/vue-quill-editor/tree/master/examples/01-example.vue">
+      <md-button class="md-icon-button" target="_blank" href="https://github.com/surmon-china/vue-quill-editor/tree/master/examples/01-example.vue">
         <md-icon>code</md-icon>
       </md-button>
     </md-card-actions>
@@ -15,7 +13,7 @@
         <!-- quill-editor -->
         <quill-editor ref="myTextEditor"
                       v-model="content"
-                      :config="editorOption"
+                      :options="editorOption"
                       @blur="onEditorBlur($event)"
                       @focus="onEditorFocus($event)"
                       @ready="onEditorReady($event)">
@@ -31,19 +29,19 @@
     data() {
       return {
         name: 'base-example',
-        content: '<h2>I am Example</h2>',
+        content: '<h2>I am Example 1</h2>',
         editorOption: {}
       }
     },
     methods: {
       onEditorBlur(editor) {
-        console.log('editor blur!', editor)
+        // console.log('editor blur!', editor)
       },
       onEditorFocus(editor) {
-        console.log('editor focus!', editor)
+        // console.log('editor focus!', editor)
       },
       onEditorReady(editor) {
-        console.log('editor ready!', editor)
+        // console.log('editor ready!', editor)
       }
     },
     computed: {
@@ -52,9 +50,9 @@
       }
     },
     mounted() {
-      console.log('this is my editor', this.editor)
+      // console.log('this is my editor', this.editor)
       setTimeout(() => {
-        this.content = '<h1>i am changed!</h1>'
+        this.content = '<h1>Example 1 changed!</h1>'
       }, 1800)
     }
   }
