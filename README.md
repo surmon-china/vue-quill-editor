@@ -39,12 +39,15 @@ var Vue = require('vue')
 var VueQuillEditor = require('vue-quill-editor')
 
 
-// or import 'vue-quill-editor/ssr' to used in Nuxt.js/ssr
-var VueQuillEditor = require('vue-quill-editor/ssr')
-
-
-// mount with global (If used in nuxt.js / SSR, you should keep it only in a browser-built environment)
+// mount with global
 Vue.use(VueQuillEditor)
+
+
+// If used in Nuxt.js/SSR, you should keep it only in a browser build environment
+if (process.BROWSER_BUILD) {
+  const VueQuillEditor = require('vue-quill-editor/ssr')
+  Vue.use(VueQuillEditor)
+}
 
 
 // if you need register quill modules, you need to introduce and register before the vue program is instantiated
@@ -53,7 +56,7 @@ import { yourQuillModule } from '../yourModulePath/yourQuillModule.js'
 Quill.register('modules/yourQuillModule', yourQuillModule)
 
 
-// mount with component(can't work in ssr)
+// mount with component(can't work in Nuxt.js/SSR)
 import { quillEditor } from 'vue-quill-editor'
 
 export default {
@@ -81,7 +84,7 @@ export default {
        v-quill:myQuillEditor="editorOption">
   </div>
 
-  <!-- Or manually control the data synchronization（或手动控制数据流）  -->
+  <!-- Or manually control the data synchronization（手动控制数据流）  -->
   <div class="quill-editor" 
        :content="content"
        @change="onEditorChange($event)"
