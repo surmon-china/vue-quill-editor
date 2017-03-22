@@ -170,7 +170,7 @@ export default {
 </script>
 ```
 
-# Some extend code of quill
+# Some extend of quill
 - [Quill - issues - Option to insert an image from a URL](https://github.com/quilljs/quill/issues/893)
 - [Quill - issues - Image Resize](https://github.com/quilljs/quill/issues/104)
 - [Quill - Modules - ImageImport and ImageResize](https://www.webpackbin.com/bins/-Ket3Oz1330Cy0MbddU3)
