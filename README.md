@@ -43,7 +43,7 @@ var VueQuillEditor = require('vue-quill-editor')
 Vue.use(VueQuillEditor)
 
 
-// If used in Nuxt.js/SSR, you should keep it only in a browser build environment
+// If used in Nuxt.js/SSR, you should keep it only in browser build environment
 if (process.BROWSER_BUILD) {
   const VueQuillEditor = require('vue-quill-editor/ssr')
   Vue.use(VueQuillEditor)
