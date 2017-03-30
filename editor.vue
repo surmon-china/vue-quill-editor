@@ -56,7 +56,7 @@
         if (this.$el) {
 
           // options and instance
-          let self = this
+          var self = this
           self.options.theme = self.options.theme || 'snow'
           self.options.boundary = self.options.boundary || document.body
           self.options.modules = self.options.modules || self.defaultModules
@@ -64,9 +64,6 @@
           self.options.placeholder = self.options.placeholder || 'Insert text here ...'
           self.options.readOnly = self.options.readOnly !== undefined ? self.options.readOnly : false
           self.options.modules.toolbar = self.options.modules.toolbar || defaultOptions.modules.toolbar
-
-          console.log(self.options)
-
           self.quill = new Quill(self.$el, self.options)
 
           // set editor content
@@ -85,7 +82,7 @@
 
           // update model if text changes
           self.quill.on('text-change', (delta, oldDelta, source) => {
-            let html = self.$el.children[0].innerHTML
+            var html = self.$el.children[0].innerHTML
             const text = self.quill.getText()
             if (html === '<p><br></p>') html = ''
             self._content = html
