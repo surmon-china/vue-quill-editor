@@ -54,14 +54,20 @@
     methods: {
       initialize() {
         if (this.$el) {
+
+          // options and instance
           let self = this
-          self.quill = new Quill(self.$el, Object.assign({
-            modules: self.defaultModules,
-            placeholder: 'Insert text here ...',
-            readOnly: false,
-            theme: 'snow',
-            boundary: document.body
-          }, self.options || {}))
+          self.options.theme = self.options.theme || 'snow'
+          self.options.boundary = self.options.boundary || document.body
+          self.options.modules = self.options.modules || self.defaultModules
+          self.options.modules.toolbar = self.options.modules.toolbar || self.defaultModules.toolbar
+          self.options.placeholder = self.options.placeholder || 'Insert text here ...'
+          self.options.readOnly = self.options.readOnly !== undefined ? self.options.readOnly : false
+          self.options.modules.toolbar = self.options.modules.toolbar || defaultOptions.modules.toolbar
+
+          console.log(self.options)
+
+          self.quill = new Quill(self.$el, self.options)
 
           // set editor content
           if (self.value || self.content) {
