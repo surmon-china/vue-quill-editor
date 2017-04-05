@@ -1,11 +1,6 @@
 
 const Quill = window.Quill = require('quill/dist/quill.js')
-const eventEmit = function (vnode, name, data) {
-  var handlers = (vnode.data && vnode.data.on) || (vnode.componentOptions && vnode.componentOptions.listeners)
-  if (handlers && handlers[name]) {
-    handlers[name].fns(data)
-  }
-}
+
 const quillEditor = {
   install: function(Vue) {
     Vue.directive('quill', {
@@ -14,6 +9,12 @@ const quillEditor = {
         var instanceName = binding.arg
         var options = binding.value || {}
         var quill = _this[instanceName]
+        var eventEmit = function (vnode, name, data) {
+          var handlers = (vnode.data && vnode.data.on) || (vnode.componentOptions && vnode.componentOptions.listeners)
+          if (handlers && handlers[name]) {
+            handlers[name].fns(data)
+          }
+        }
         if (!quill) {
           // initialize
           var defaultOptions = {
