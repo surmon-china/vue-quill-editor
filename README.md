@@ -17,6 +17,9 @@
 # Example
 [Demo Page](https://surmon-china.github.io/vue-quill-editor/)
 
+# Update
+This component is a simple and lightweight editor. It doesn't depend on any other resources except quill core and css. Quill is an open source prototypical editor which has a powerful extension API and module registration function. If you need any other attached functions, please program on your own or use other extention modules. Finally, please don't ask the questions like whether i can realize some function in the editor or why not. Thanks.
+
 
 # Use Setup
 
@@ -171,9 +174,9 @@ export default {
 </script>
 ```
 
-# Some extend of quill
-- [Quill - issues - Option to insert an image from a URL](https://github.com/quilljs/quill/issues/893)
-- [Quill - issues - Image Resize](https://github.com/quilljs/quill/issues/104)
+# Some extendings of quill
+- [Quill - Issues - Option to insert an image from a URL](https://github.com/quilljs/quill/issues/893)
+- [Quill - Issues - Image Resize](https://github.com/quilljs/quill/issues/104)
 - [Quill - Modules - ImageImport and ImageResize](https://www.webpackbin.com/bins/-Ket3Oz1330Cy0MbddU3)
 
 
