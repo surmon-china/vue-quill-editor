@@ -1,5 +1,8 @@
 <template>
-  <div class="quill-editor"></div>
+  <div class="quill-editor">
+    <slot name="toolbar"></slot>
+    <div ref="editor"></div>
+  </div>
 </template>
 
 <script>
@@ -64,7 +67,7 @@
           self.options.placeholder = self.options.placeholder || 'Insert text here ...'
           self.options.readOnly = self.options.readOnly !== undefined ? self.options.readOnly : false
           self.options.modules.toolbar = self.options.modules.toolbar || defaultOptions.modules.toolbar
-          self.quill = new Quill(self.$el, self.options)
+          self.quill = new Quill(self.$refs.editor, self.options)
 
           // set editor content
           if (self.value || self.content) {
@@ -82,7 +85,7 @@
 
           // update model if text changes
           self.quill.on('text-change', (delta, oldDelta, source) => {
-            var html = self.$el.children[0].innerHTML
+            var html = self.$refs.editor.children[0].innerHTML
             const text = self.quill.getText()
             if (html === '<p><br></p>') html = ''
             self._content = html

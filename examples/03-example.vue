@@ -10,29 +10,29 @@
     </md-card-actions>
     <md-card-media>
       <div class="quill-editor-example">
-        <div id="toolbar">
-          <!-- Add a bold button -->
-          <button class="ql-bold">Bold</button>
-          <button class="ql-italic">Italic</button>
-          <!-- Add font size dropdown -->
-          <select class="ql-size">
-            <option value="small"></option>
-            <!-- Note a missing, thus falsy value, is used to reset to default -->
-            <option selected></option>
-            <option value="large"></option>
-            <option value="huge"></option>
-          </select>
-          <!-- Add subscript and superscript buttons -->
-          <button class="ql-script" value="sub"></button>
-          <button class="ql-script" value="super"></button>
-          <button @click="customButtonClick">custom button</button>
-        </div>
         <!-- quill-editor -->
         <quill-editor v-model="content"
                       :options="editorOption"
                       @blur="onEditorBlur($event)"
                       @focus="onEditorFocus($event)"
                       @ready="onEditorReady($event)">
+          <div id="toolbar" slot="toolbar">
+            <!-- Add a bold button -->
+            <button class="ql-bold">Bold</button>
+            <button class="ql-italic">Italic</button>
+            <!-- Add font size dropdown -->
+            <select class="ql-size">
+              <option value="small"></option>
+              <!-- Note a missing, thus falsy value, is used to reset to default -->
+              <option selected></option>
+              <option value="large"></option>
+              <option value="huge"></option>
+            </select>
+            <!-- Add subscript and superscript buttons -->
+            <button class="ql-script" value="sub"></button>
+            <button class="ql-script" value="super"></button>
+            <button @click="customButtonClick">custom button</button>
+          </div>
         </quill-editor>
         <div class="html ql-editor" v-html="content"></div>
       </div>
