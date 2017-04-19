@@ -35,7 +35,7 @@
       return {
         name: 'register-modules-example',
         content: '<p>Click on the Image Below to resize</p>' + 
-                 '<p><img src="http://ri-sandbox.s3.amazonaws.com/qulljs.png"></p>' +
+                 '<p><img src="https://surmon-china.github.io/vue-video-player/static/images/author.jpg" width="400"></p>' +
                  '<p>Or drag/paste an image here</p>',
         editorOption: {
           modules: {
