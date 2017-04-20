@@ -105,7 +105,7 @@ const quillEditor = {
               quill.pasteHTML(newData)
             }
           } else {
-            this.quill.setText('')
+            quill.setText('')
           }
         }
       },
