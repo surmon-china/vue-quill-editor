@@ -40,6 +40,7 @@
     props: {
       content: String,
       value: String,
+      disabled: Boolean,
       options: {
         type: Object,
         required: false,
@@ -121,6 +122,11 @@
           } else if(!newVal) {
             this.quill.setText('')
           }
+        }
+      },
+      'disabled'(newVal, oldVal) {
+        if (this.quill) {
+          this.quill.enable(!newVal)
         }
       }
     }
