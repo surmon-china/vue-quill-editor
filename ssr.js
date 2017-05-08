@@ -77,13 +77,12 @@ const quillEditor = {
             }
             if (model) {
               model.callback(html)
-            } else if (content) {
-              eventEmit(vnode, 'change', {
-                editor: quill,
-                html: html,
-                text: text
-              })
             }
+            eventEmit(vnode, 'change', {
+              editor: quill,
+              html: html,
+              text: text
+            })
           })
 
           // emit ready
