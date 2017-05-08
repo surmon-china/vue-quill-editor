@@ -63,10 +63,11 @@
           self.options.theme = self.options.theme || 'snow'
           self.options.boundary = self.options.boundary || document.body
           self.options.modules = self.options.modules || self.defaultModules
-          self.options.modules.toolbar = self.options.modules.toolbar || self.defaultModules.toolbar
+          self.options.modules.toolbar = self.options.modules.toolbar !== undefined 
+                                          ? self.options.modules.toolbar 
+                                          : self.defaultModules.toolbar
           self.options.placeholder = self.options.placeholder || 'Insert text here ...'
           self.options.readOnly = self.options.readOnly !== undefined ? self.options.readOnly : false
-          self.options.modules.toolbar = self.options.modules.toolbar || defaultOptions.modules.toolbar
           self.quill = new Quill(self.$refs.editor, self.options)
 
           // set editor content

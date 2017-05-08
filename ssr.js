@@ -46,7 +46,9 @@ const quillEditor = {
           options.readOnly = options.readOnly || defaultOptions.readOnly
           options.boundary = options.boundary || defaultOptions.boundary
           options.placeholder = options.placeholder || defaultOptions.placeholder
-          options.modules.toolbar = options.modules.toolbar || defaultOptions.modules.toolbar
+          options.modules.toolbar = options.modules.toolbar !== undefined 
+                                      ? options.modules.toolbar 
+                                      : defaultOptions.modules.toolbar
           quill = _this[instanceName] = new Quill(el, options)
 
           // data init
