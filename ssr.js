@@ -75,7 +75,7 @@ const quillEditor = {
             var text = quill.getText()
             if (html === '<p><br></p>') {
               html = ''
-              quill.pasteHTML(html)
+              quill.root.innerHTML = html
             }
             if (model) {
               model.callback(html)
@@ -103,7 +103,11 @@ const quillEditor = {
           var oldData = el.children[0].innerHTML
           if (newData) {
             if (newData != oldData) {
-              quill.pasteHTML(newData)
+              const range = quill.getSelection();
+              quill.root.innerHTML = newData;
+              _.defer(() => {
+                quill.setSelection(range);
+              });
             }
           } else {
             quill.setText('')
