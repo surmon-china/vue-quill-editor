@@ -105,7 +105,7 @@ const quillEditor = {
             if (newData != oldData) {
               const range = quill.getSelection();
               quill.root.innerHTML = newData;
-              _.defer(() => {
+              setTimeout(() => {
                 quill.setSelection(range);
               });
             }
