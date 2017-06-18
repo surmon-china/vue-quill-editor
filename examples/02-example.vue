@@ -55,7 +55,7 @@
     },
     computed: {
       editor() {
-        return this.$refs.myTextEditor.quillEditor
+        return this.$refs.myTextEditor.quill
       }
     },
     mounted() {
