@@ -3,7 +3,7 @@ import example02 from './02-example.vue'
 import example03 from './03-example.vue'
 import example04 from './04-example.vue'
 
-module.exports = {
+export default {
   example01,
   example02,
   example03,
