@@ -1,3 +1,10 @@
+/**
+ * update by IWANABETHATGUY 
+ * this is a easy finish for the codeSelector you need to register before use it..
+ *  这是第一次pullrequest ，如果做得不好的地方请多多指教，做了一个代码选择模块，
+ * 什么代码规范也不太会写，写的不好的地方请多多包涵，后面的样例会慢慢更新，readme 明天更新吧，
+ * 今天刚把git配置好
+ */
 export class CodeSelector {
   constructor(quill, options) {
     this.quill = quill
