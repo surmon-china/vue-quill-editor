@@ -14,7 +14,7 @@
   }
   export default {
     name: 'quill-editor',
-    data() {
+    data: function() {
       return {
         _content: '',
         defaultModules: {
@@ -44,19 +44,19 @@
       options: {
         type: Object,
         required: false,
-        default() {
+        default: function() {
           return {}
         }
       }
     },
-    mounted() {
+    mounted: function() {
       this.initialize()
     },
-    beforeDestroy() {
+    beforeDestroy: function() {
       this.quill = null
     },
     methods: {
-      initialize() {
+      initialize: function() {
         if (this.$el) {
 
           // options and instance
@@ -88,7 +88,7 @@
           // update model if text changes
           self.quill.on('text-change', (delta, oldDelta, source) => {
             var html = self.$refs.editor.children[0].innerHTML
-            const text = self.quill.getText()
+            var text = self.quill.getText()
             if (html === '<p><br></p>') html = ''
             self._content = html
             self.$emit('input', self._content)
@@ -99,13 +99,18 @@
             })
           })
 
+          // disabled
+          if (this.disabled) {
+            this.quill.enable(false)
+          }
+
           // emit ready
           self.$emit('ready', self.quill)
         }
       }
     },
     watch: {
-      'content'(newVal, oldVal) {
+      content: function(newVal, oldVal) {
         if (this.quill) {
           if (!!newVal && newVal !== this._content) {
             this._content = newVal
@@ -115,7 +120,7 @@
           }
         }
       },
-      'value'(newVal, oldVal) {
+      value: function(newVal, oldVal) {
         if (this.quill) {
           if (!!newVal && newVal !== this._content) {
             this._content = newVal
@@ -125,7 +130,7 @@
           }
         }
       },
-      'disabled'(newVal, oldVal) {
+      disabled: function(newVal, oldVal) {
         if (this.quill) {
           this.quill.enable(!newVal)
         }

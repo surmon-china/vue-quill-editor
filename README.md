@@ -9,9 +9,9 @@
 
 
 # Vue-Quill-Editor
-🍡Quill editor component for Vue2, support SPA and SSR.
+🍡Quill editor component for Vue, support SPA and SSR.
 
-基于Quill、适用于Vue2的富文本编辑器，支持服务端渲染和单页应用。
+基于 Quill、适用于 Vue 的富文本编辑器，支持服务端渲染和单页应用。
 
 
 # Example
@@ -48,7 +48,7 @@ Vue.use(VueQuillEditor)
 
 
 // If used in Nuxt.js/SSR, you should keep it only in browser build environment
-if (process.BROWSER_BUILD) {
+if (process.browser) {
   const VueQuillEditor = require('vue-quill-editor/ssr')
   Vue.use(VueQuillEditor)
 }

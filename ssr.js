@@ -1,7 +1,7 @@
 
-const Quill = window.Quill = require('quill/dist/quill.js')
+var Quill = window.Quill = require('quill/dist/quill.js')
 
-const quillEditor = {
+var quillEditor = {
   install: function(Vue) {
     Vue.directive('quill', {
       inserted: function (el, binding, vnode) {
@@ -52,8 +52,8 @@ const quillEditor = {
           quill = _this[instanceName] = new Quill(el, options)
 
           // data init
-          const model = vnode.data.model
-          const content = vnode.data.attrs ? vnode.data.attrs.content : null
+          var model = vnode.data.model
+          var content = vnode.data.attrs ? vnode.data.attrs.content : null
 
           // set editor content
           if (model || content) {
@@ -97,13 +97,13 @@ const quillEditor = {
         var options = binding.value || {}
         var quill = _this[instanceName]
         if (quill) {
-          const model = vnode.data.model
-          const content = vnode.data.attrs ? vnode.data.attrs.content : null
+          var model = vnode.data.model
+          var content = vnode.data.attrs ? vnode.data.attrs.content : null
           var newData = model ? model.value : content
           var oldData = el.children[0].innerHTML
           if (newData) {
             if (newData != oldData) {
-              const range = quill.getSelection();
+              var range = quill.getSelection();
               quill.root.innerHTML = newData;
               setTimeout(function() {
                 quill.setSelection(range);
