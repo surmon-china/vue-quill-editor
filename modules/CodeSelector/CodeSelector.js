@@ -56,9 +56,13 @@ export class CodeSelector {
             cur = new CodeSelectBlock(item.offsetTop, item.offsetLeft, item.offsetWidth, this.languages)
           this.codeSelectList.splice(i, 0, cur)
           if (flag === 'inhriet') {
-            this.codeSelectList[i].getElementsByTagName('input')[0].value=this.codeSelectList[i-1].getElementsByTagName('input')[0].value
+            this.codeSelectList[i].getElementsByTagName('input')[0].value = this.codeSelectList[i - 1].getElementsByTagName('input')[0].value
+            this.container.insertBefore(cur,this.codeSelectList[i+1])
+            
+          } else {
+            this.container.appendChild(cur)
           }
-          this.container.appendChild(cur)
+
           break
         }
       }
@@ -106,7 +110,7 @@ class CodeSelectBlock {
       'left': '0',
       'width': '100px',
       'border': 'none',
-    })
+    }, 'code-type-input')
     this.button = this.itemConstructor('button', {
       'position': 'absolute',
       'outline': 'none',

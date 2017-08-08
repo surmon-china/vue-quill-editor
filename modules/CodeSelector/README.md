@@ -21,6 +21,14 @@ var quill = new Quill('#editor-container', {
   );
 
 ```
+# how to get the code type  
+  the easy wat to get the code type list
+  ```javascript 
+  let list =document.getElementById('yourcodeContainer').getElementsByClassName('code-type-input')
+  let result =Array.prototype.map.call(list,(item)=>{
+    return item.value
+  })
+  ```
 ## if you wnat to use it in vue-quill-editor ,you need to modified it in the init options
 
 
