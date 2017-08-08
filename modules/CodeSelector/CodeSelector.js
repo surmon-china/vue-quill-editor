@@ -1,3 +1,7 @@
+/**
+ * @author IWANABETHATGUY
+ * 
+ */
 export class CodeSelector {
   constructor(quill, options) {
     this.quill = quill
