@@ -1,9 +1,6 @@
 /**
- * update by IWANABETHATGUY 
- * this is a easy finish for the codeSelector you need to register before use it..
- *  这是第一次pullrequest ，如果做得不好的地方请多多指教，做了一个代码选择模块，
- * 什么代码规范也不太会写，写的不好的地方请多多包涵，后面的样例会慢慢更新，readme 明天更新吧，
- * 今天刚把git配置好
+ * @author IWANABETHATGUY
+ * 
  */
 export class CodeSelector {
   constructor(quill, options) {
@@ -12,7 +9,7 @@ export class CodeSelector {
     this.container = quill.options.container
     this.codeBlockList = this.container.getElementsByClassName('ql-syntax')
     this.codeSelectList = []
-    this.languages = ['asp', 'javascript', 'html', 'css', 'scss', 'sass', 'less', 'python', 'c++', 'java'].sort()
+    this.languages = this.quill.options.codetypelist || ['asp', 'javascript', 'html', 'css', 'scss', 'sass', 'less', 'python', 'c++', 'java'].sort()
     this.quill.on('text-change', function (delta, olddelta, source) {
       for (let d in delta.ops) {
         if (delta['ops'][d].hasOwnProperty('attributes')) {
@@ -20,13 +17,12 @@ export class CodeSelector {
             if (delta['ops'][d]['attributes']['code-block']) {
               this.onAddCodeBlock()
             } else {
-              this.onAddCodeBlock()
-              this.onEnter()
+              this.onAddCodeBlock('inhriet')
             }
           }
         } else if (delta['ops'][d].hasOwnProperty('insert')) {
           if (delta['ops'][d]['insert'] === "\n") {
-            this.onAddCodeBlock()
+            this.Arrange()
           }
         } else if (delta['ops'][d].hasOwnProperty('delete') && delta['ops'][d]['delete'] === 1) {
           this.onAddCodeBlock()
@@ -35,7 +31,7 @@ export class CodeSelector {
 
     }.bind(this))
   }
-  onEnter() {
+  Arrange() {
     for (let i = 0, len = Math.min(this.codeBlockList.length, this.codeSelectList.length); i < len; i++) {
       this.codeSelectList[i].style.top = this.codeBlockList[i].offsetTop + 'px'
     }
@@ -47,25 +43,33 @@ export class CodeSelector {
       if (!this.codeBlockList[i] || this.codeBlockList[i].offsetTop !== parseInt(this.codeSelectList[i].style.top, 10)) {
         this.container.removeChild(this.codeSelectList[i])
         this.codeSelectList.splice(i, 1)
+        break
       }
       i++
     }
   }
-  onAddCodeBlock() {
+  onAddCodeBlock(flag) {
     if (this.codeBlockList.length > this.codeSelectList.length) {
       for (let i = 0, len = this.codeBlockList.length; i < len; i++) {
         if (!this.codeSelectList[i] || this.codeBlockList[i].offsetTop !== parseInt(this.codeSelectList[i].style.top, 10)) {
           let item = this.codeBlockList[i],
             cur = new CodeSelectBlock(item.offsetTop, item.offsetLeft, item.offsetWidth, this.languages)
           this.codeSelectList.splice(i, 0, cur)
-          this.container.appendChild(cur)
+          if (flag === 'inhriet') {
+            this.codeSelectList[i].getElementsByTagName('input')[0].value = this.codeSelectList[i - 1].getElementsByTagName('input')[0].value
+            this.container.insertBefore(cur,this.codeSelectList[i+1])
+            
+          } else {
+            this.container.appendChild(cur)
+          }
+
           break
         }
       }
     } else if (this.codeBlockList.length < this.codeSelectList.length) {
       this.onRemoveCodeBlock()
     }
-    this.onEnter()
+    this.Arrange()
   }
 }
 class CodeSelectBlock {
@@ -106,7 +110,7 @@ class CodeSelectBlock {
       'left': '0',
       'width': '100px',
       'border': 'none',
-    })
+    }, 'code-type-input')
     this.button = this.itemConstructor('button', {
       'position': 'absolute',
       'outline': 'none',
