@@ -1,9 +1,8 @@
 # A moduel for quill (codeSelector)
 
 # Example
-[Demo Page](https://surmon-china.github.io/vue-quill-editor/)
 
-
+![](https://github.com/IWANABETHATGUY/vue-quill-editor/blob/master/modules/CodeSelector/screenshot/screeshot.png?raw=true)
 # Use Setup
 ## Register
 
