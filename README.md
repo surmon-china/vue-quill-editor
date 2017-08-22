@@ -1,3 +1,4 @@
+[![](https://badge.juejin.im/entry/5852b6fc61ff4b006c89b49d/likes.svg?style=flat-square)](https://juejin.im/entry/5852b6fc61ff4b006c89b49d/detail)
 [![GitHub issues](https://img.shields.io/github/issues/surmon-china/vue-quill-editor.svg?style=flat-square)](https://github.com/surmon-china/vue-quill-editor/issues)
 [![GitHub forks](https://img.shields.io/github/forks/surmon-china/vue-quill-editor.svg?style=flat-square)](https://github.com/surmon-china/vue-quill-editor/network)
 [![GitHub stars](https://img.shields.io/github/stars/surmon-china/vue-quill-editor.svg?style=flat-square)](https://github.com/surmon-china/vue-quill-editor/stargazers)
