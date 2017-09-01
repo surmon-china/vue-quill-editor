@@ -1,6 +1,6 @@
 {
   "name": "vue-quill-editor",
-  "version": "2.3.0",
+  "version": "2.3.2",
   "description": "quill editor component for Vue",
   "main": "index.js",
   "scripts": {

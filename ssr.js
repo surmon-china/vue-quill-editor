@@ -3,10 +3,22 @@ var Quill = window.Quill = require('quill/dist/quill.js')
 
 var quillEditor = {
   install: function(Vue) {
+    var getInstanceName = function(el, binding, vnode) {
+      var customInstanceName = ''
+      if (binding.arg) {
+        customInstanceName = binding.arg
+      } else if (vnode.data.attrs && vnode.data.attrs.instanceName) {
+        customInstanceName = vnode.data.attrs.instanceName
+      } else if (el.id) {
+        customInstanceName = el.id
+      }
+      var instanceName = customInstanceName || 'quill'
+      return instanceName
+    }
     Vue.directive('quill', {
       inserted: function (el, binding, vnode) {
         var _this = vnode.context
-        var instanceName = binding.arg
+        var instanceName = getInstanceName(el, binding, vnode)
         var options = binding.value || {}
         var quill = _this[instanceName]
         var eventEmit = function (vnode, name, data) {
@@ -93,7 +105,7 @@ var quillEditor = {
       },
       componentUpdated: function (el, binding, vnode) {
         var _this = vnode.context
-        var instanceName = binding.arg
+        var instanceName = getInstanceName(el, binding, vnode)
         var options = binding.value || {}
         var quill = _this[instanceName]
         if (quill) {
