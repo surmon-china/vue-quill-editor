@@ -2,7 +2,7 @@
 
 # Example
 
-![](https://github.com/IWANABETHATGUY/vue-quill-editor/blob/master/modules/CodeSelector/screenshot/screeshot.png?raw=true)
+![截图](http://ouck2t8ui.bkt.clouddn.com/CodeSelector.gif)
 # Use Setup
 ## Register
 
@@ -29,7 +29,7 @@ var quill = new Quill('#editor-container', {
     return item.value
   })
   ```
-## if you wnat to use it in vue-quill-editor ,you need to modified it in the init options
+**if you wnat to use it in vue-quill-editor ,you need to modified it in the init options**
 
 
 
