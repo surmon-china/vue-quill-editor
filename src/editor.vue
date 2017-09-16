@@ -9,13 +9,12 @@
   require('quill/dist/quill.snow.css')
   require('quill/dist/quill.bubble.css')
   require('quill/dist/quill.core.css')
-  if (!window.Quill) {
-    window.Quill = require('quill/dist/quill.js')
-  }
+  const Quill = require('quill')
   export default {
     name: 'quill-editor',
     data: function() {
       return {
+	    quill:null,
         _content: '',
         defaultModules: {
           toolbar: [
@@ -67,7 +66,7 @@
           self.options.modules.toolbar = self.options.modules.toolbar !== undefined 
                                           ? self.options.modules.toolbar 
                                           : self.defaultModules.toolbar
-          self.options.placeholder = self.options.placeholder || 'Insert text here ...'
+          self.options.placeholder = self.options.placeholder || '请输入内容'
           self.options.readOnly = self.options.readOnly !== undefined ? self.options.readOnly : false
           self.quill = new Quill(self.$refs.editor, self.options)
 
