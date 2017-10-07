@@ -1,7 +1,7 @@
 <template>
   <div>
     <slot name="toolbar"></slot>
-    <div :style="'overflow:auto;height:400px;'+style" ref="editor"></div>
+    <div :style="'overflow:auto;height:400px;'+editorStyle" ref="editor"></div>
   </div>
 </template>
 
@@ -35,9 +35,9 @@ export default {
     }
   },
   props: {
-    style:{
+    editorStyle:{
 	    type:String,
-		  default:''
+		default:''
 	  },
     content: String,
     value: String,
@@ -93,11 +93,7 @@ export default {
           if (html === '<p><br></p>') html = ''
           self._content = html
           self.$emit('input', self._content)
-          self.$emit('change', {
-            editor: self.quill,
-            html: html,
-            text: text
-          })
+          self.$emit('change',self._content)
         })
 
         // disabled
@@ -139,7 +135,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>
