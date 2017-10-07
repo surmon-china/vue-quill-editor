@@ -1,7 +1,7 @@
 <template>
   <div>
     <slot name="toolbar"></slot>
-    <div ref="editor"></div>
+    <div :style="'overflow:auto;height:400px;'+style" ref="editor"></div>
   </div>
 </template>
 
@@ -35,6 +35,10 @@ export default {
     }
   },
   props: {
+    style:{
+	    type:String,
+		  default:''
+	  },
     content: String,
     value: String,
     disabled: Boolean,
