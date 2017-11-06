@@ -180,7 +180,7 @@ export default {
 - [Quill - Issues - Image Resize](https://github.com/quilljs/quill/issues/104)
 - [Quill - Modules - ImageImport and ImageResize](https://www.webpackbin.com/bins/-Ket3Oz1330Cy0MbddU3)
 - [Quill - toolbar - attributes](https://github.com/quilljs/quill/issues/1084)
-- [Quill - image - upload](https://github.com/surmon-china/vue-quill-editor/issues/102)
+- [Quill - image - upload，图片上传至七牛等服务器](https://github.com/surmon-china/vue-quill-editor/issues/102)
 - [quill-image-drop-module](https://github.com/kensnyder/quill-image-drop-module)
 
 
