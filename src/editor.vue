@@ -6,35 +6,17 @@
 </template>
 
 <script>
-  require('quill/dist/quill.snow.css')
-  require('quill/dist/quill.bubble.css')
-  require('quill/dist/quill.core.css')
-  if (!window.Quill) {
-    window.Quill = require('quill/dist/quill.js')
-  }
+  const defaultOptions = require('./options')
+  const objectAssign = require('./object-assign')
+  const Quill = window.Quill || require('quill')
+
   export default {
     name: 'quill-editor',
-    data: function() {
+    data() {
       return {
+        _options: {},
         _content: '',
-        defaultModules: {
-          toolbar: [
-            ['bold', 'italic', 'underline', 'strike'],
-            ['blockquote', 'code-block'],
-            [{ 'header': 1 }, { 'header': 2 }],
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            [{ 'script': 'sub'}, { 'script': 'super' }],
-            [{ 'indent': '-1'}, { 'indent': '+1' }],
-            [{ 'direction': 'rtl' }],
-            [{ 'size': ['small', false, 'large', 'huge'] }],
-            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-            [{ 'color': [] }, { 'background': [] }],
-            [{ 'font': [] }],
-            [{ 'align': [] }],
-            ['clean'],
-            ['link', 'image', 'video']
-          ]
-        }
+        defaultOptions
       }
     },
     props: {
@@ -44,75 +26,70 @@
       options: {
         type: Object,
         required: false,
-        default: function() {
-          return {}
-        }
+        default: () => ({})
+      },
+      globalOptions: {
+        type: Object,
+        required: false,
+        default: () => ({})
       }
     },
-    mounted: function() {
+    mounted() {
       this.initialize()
     },
-    beforeDestroy: function() {
+    beforeDestroy() {
       this.quill = null
+      delete this.quill
     },
     methods: {
-      initialize: function() {
+      // Init Quill instance.
+      initialize() {
         if (this.$el) {
 
-          // options and instance
-          var self = this
-          self.options.theme = self.options.theme || 'snow'
-          self.options.boundary = self.options.boundary || document.body
-          self.options.modules = self.options.modules || self.defaultModules
-          self.options.modules.toolbar = self.options.modules.toolbar !== undefined 
-                                          ? self.options.modules.toolbar 
-                                          : self.defaultModules.toolbar
-          self.options.placeholder = self.options.placeholder || 'Insert text here ...'
-          self.options.readOnly = self.options.readOnly !== undefined ? self.options.readOnly : false
-          self.quill = new Quill(self.$refs.editor, self.options)
+          // Options and instance
+          this._options = objectAssign({}, this.defaultOptions, this.globalOptions, this.options)
+          this.quill = new Quill(this.$refs.editor, this._options)
 
-          // set editor content
-          if (self.value || self.content) {
-            self.quill.pasteHTML(self.value || self.content)
+          // Set editor content
+          if (this.value || this.content) {
+            this.quill.pasteHTML(this.value || this.content)
           }
 
-          // mark model as touched if editor lost focus
-          self.quill.on('selection-change', (range) => {
-            if (!range) {
-              self.$emit('blur', self.quill)
-            } else {
-              self.$emit('focus', self.quill)
-            }
-          })
-
-          // update model if text changes
-          self.quill.on('text-change', (delta, oldDelta, source) => {
-            var html = self.$refs.editor.children[0].innerHTML
-            var text = self.quill.getText()
-            if (html === '<p><br></p>') html = ''
-            self._content = html
-            self.$emit('input', self._content)
-            self.$emit('change', {
-              editor: self.quill,
-              html: html,
-              text: text
-            })
-          })
-
-          // disabled
+          // Disabled editor
           if (this.disabled) {
             this.quill.enable(false)
           }
 
-          // emit ready
-          self.$emit('ready', self.quill)
+          // Mark model as touched if editor lost focus
+          this.quill.on('selection-change', range => {
+            if (!range) {
+              this.$emit('blur', this.quill)
+            } else {
+              this.$emit('focus', this.quill)
+            }
+          })
+
+          // Update model if text changes
+          this.quill.on('text-change', (delta, oldDelta, source) => {
+            let html = this.$refs.editor.children[0].innerHTML
+            const quill = this.quill
+            const text = this.quill.getText()
+            if (html === '<p><br></p>') html = ''
+            this._content = html
+            this.$emit('input', this._content)
+            this.$emit('change', { html, text, quill })
+          })
+
+          // Emit ready event
+          this.$emit('ready', this.quill)
         }
       }
     },
     watch: {
-      content: function(newVal, oldVal) {
+      // Watch content change
+      content(newVal, oldVal) {
         if (this.quill) {
-          if (!!newVal && newVal !== this._content) {
+          if (newVal && newVal !== this._content) {
             this._content = newVal
             this.quill.pasteHTML(newVal)
           } else if(!newVal) {
@@ -120,9 +97,10 @@
           }
         }
       },
-      value: function(newVal, oldVal) {
+      // Watch content change
+      value(newVal, oldVal) {
         if (this.quill) {
-          if (!!newVal && newVal !== this._content) {
+          if (newVal && newVal !== this._content) {
             this._content = newVal
             this.quill.pasteHTML(newVal)
           } else if(!newVal) {
@@ -130,7 +108,8 @@
           }
         }
       },
-      disabled: function(newVal, oldVal) {
+      // Watch disabled change
+      disabled(newVal, oldVal) {
         if (this.quill) {
           this.quill.enable(!newVal)
         }
@@ -138,9 +117,3 @@
     }
   }
 </script>
-
-<style>
-  .quill-editor img {
-    max-width: 100%;
-  }
-</style>

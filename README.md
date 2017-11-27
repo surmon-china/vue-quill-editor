@@ -24,14 +24,14 @@ This component is a simple and lightweight editor. It doesn't depend on any othe
 
 # Use Setup
 
-### Install vue-quill-editor
+### Install
 
 ``` bash
 npm install vue-quill-editor --save
 ```
 
 
-### Vue mount
+### Mount
 
 ``` javascript
 // import
@@ -44,24 +44,16 @@ var Vue = require('vue')
 var VueQuillEditor = require('vue-quill-editor')
 
 
+// require styles
+require('quill/dist/quill.core.css')
+require('quill/dist/quill.snow.css')
+require('quill/dist/quill.bubble.css')
+
+
 // mount with global
 Vue.use(VueQuillEditor)
 
-
-// If used in Nuxt.js/SSR, you should keep it only in browser build environment
-if (process.browser) {
-  const VueQuillEditor = require('vue-quill-editor/ssr')
-  Vue.use(VueQuillEditor)
-}
-
-
-// if you need register quill modules, you need to introduce and register before the vue program is instantiated
-import Quill from 'quill'
-import { yourQuillModule } from '../yourModulePath/yourQuillModule.js'
-Quill.register('modules/yourQuillModule', yourQuillModule)
-
-
-// mount with component(can't work in Nuxt.js/SSR)
+// or mount with component(can't work in Nuxt.js/SSR)
 import { quillEditor } from 'vue-quill-editor'
 
 export default {
@@ -69,16 +61,27 @@ export default {
     quillEditor
   }
 }
+
+// or mount with ssr
+if (process.browser) {
+  const VueQuillEditor = require('vue-quill-editor/dist/ssr')
+  Vue.use(VueQuillEditor)
+}
+
+// if you need register quill modules, you need to introduce and register before the vue program is instantiated
+import Quill from 'quill'
+import { yourQuillModule } from '../yourModulePath/yourQuillModule.js'
+Quill.register('modules/yourQuillModule', yourQuillModule)
 ```
 
-### Use the difference（使用方法的区别）
+### Difference（使用方法的区别）
 
 **SSR and the only difference in the use of the SPA:**
 - SPA worked by the `component`, find quill instance by `ref attribute`.
 - SSR worked by the `directive`, find quill instance by `directive arg`.
 - Other configurations, events are the same.
 
-### Use in SSR
+### SSR
 
 ``` vue
 <!-- You can custom the "myQuillEditor" name used to find the quill instance in current component -->
@@ -109,7 +112,7 @@ export default {
 ```
 
 
-### Use in SPA
+### SPA
 
 ``` vue
 <template>
@@ -156,8 +159,8 @@ export default {
       onEditorReady(editor) {
         console.log('editor ready!', editor)
       },
-      onEditorChange({ editor, html, text }) {
-        console.log('editor change!', editor, html, text)
+      onEditorChange({ quill, html, text }) {
+        console.log('editor change!', quill, html, text)
         this.content = html
       }
     },
@@ -175,17 +178,19 @@ export default {
 </script>
 ```
 
-# Some extendings of quill
-- [Quill - Issues - Option to insert an image from a URL](https://github.com/quilljs/quill/issues/893)
-- [Quill - Issues - Image Resize](https://github.com/quilljs/quill/issues/104)
-- [Quill - Modules - ImageImport and ImageResize](https://www.webpackbin.com/bins/-Ket3Oz1330Cy0MbddU3)
-- [Quill - toolbar - attributes](https://github.com/quilljs/quill/issues/1084)
-- [Quill - image - upload，图片上传至七牛等服务器](https://github.com/surmon-china/vue-quill-editor/issues/102)
+# Extends
+- [quill-image-resize-module](https://github.com/kensnyder/quill-image-resize-module)
 - [quill-image-drop-module](https://github.com/kensnyder/quill-image-drop-module)
 
+# Issues
+- [Quill - Modules - ImageImport and ImageResize](https://www.webpackbin.com/bins/-Ket3Oz1330Cy0MbddU3)
+- [Quill - oolbar - attributes](https://github.com/quilljs/quill/issues/1084)
+- [Quill - Issues - Option to insert an image from a URL](https://github.com/quilljs/quill/issues/893)
+- [如何将图片上传至七牛等服务器](https://github.com/surmon-china/vue-quill-editor/issues/102)
+- [How vue-quill-editor combine with the syntax highlighter module of highlight.js ](https://github.com/surmon-china/vue-quill-editor/issues/39)
 
 
-# Quill Config
+# Quill documents
 [Api docs](https://quilljs.com/docs/quickstart/)
 
 
