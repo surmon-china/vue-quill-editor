@@ -5,17 +5,16 @@
 .eslintrc.js
 .eslintignore
 .gitignore
+.travis.yml
 
 test/
 test/unit/coverage
 test/e2e/reports
 
-docs/
 gh-pages/
 static/
 build/
 config/
-documentation/
 node_modules
 node_modules/
 npm-debug.log
