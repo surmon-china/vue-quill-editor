@@ -230,7 +230,7 @@ describe('vue-quill-editor', () => {
 
   // 多个循环实例
   describe('Multi edirot instance', () => {
-    it(' - should update value after any change text', () => {
+    it(' - should update value after any change text', done => {
       const eventLogs = []
       const vm = new Vue({
         template: `<div>
@@ -268,8 +268,11 @@ describe('vue-quill-editor', () => {
       expect(vm.$refs.editorb[0].quill.getText()).to.deep.equal('b-test content\n')
       expect(vm.$refs.editorc[0].quill.getText()).to.deep.equal('c-test content\n')
       vm.contents.b = '<p>b-test change</p>'
-      expect(vm.$refs.editorb[0].quill.getText()).to.deep.equal('b-test change\n')
-      expect(vm.$refs.editorb[0].quill instanceof Quill).to.deep.equal(true)
+      Vue.nextTick(() => {
+        expect(vm.$refs.editorb[0].quill.getText()).to.deep.equal('b-test change\n')
+        expect(vm.$refs.editorb[0].quill instanceof Quill).to.deep.equal(true)
+        done()
+      })
     })
   })
 
