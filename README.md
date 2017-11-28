@@ -7,6 +7,7 @@
 
 [![NPM](https://nodei.co/npm/vue-quill-editor.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/vue-quill-editor/)
 [![NPM](https://nodei.co/npm-dl/vue-quill-editor.png?months=9&height=3)](https://nodei.co/npm/vue-quill-editor/)
+[![Build Status](https://travis-ci.org/surmon-china/vue-quill-editor.svg?branch=master)](https://travis-ci.org/surmon-china/vue-quill-editor)
 
 
 # Vue-Quill-Editor
@@ -48,9 +49,9 @@ require('quill/dist/quill.bubble.css')
 
 
 // mount with global
-Vue.use(VueQuillEditor, /* {  default global options }*/)
+Vue.use(VueQuillEditor, /* {  default global options } */)
 
-// or mount with component(can't work in Nuxt.js/SSR)
+// mount with component(can't work in Nuxt.js/SSR)
 import { quillEditor } from 'vue-quill-editor'
 
 export default {
@@ -59,15 +60,14 @@ export default {
   }
 }
 
-// or mount with ssr
+// mount with ssr
 if (process.browser) {
   const VueQuillEditor = require('vue-quill-editor/dist/ssr')
   Vue.use(VueQuillEditor)
 }
 
-// if you need register quill modules, you need to introduce and register before the vue program is instantiated
-import Quill from 'quill'
-// or 
+// register quill modules, you need to introduce and register before the vue program is instantiated
+import Quill from 'quill' // or from 'vue-quill-editor'
 import { Quill } from 'vue-quill-editor'
 import { yourQuillModule } from '../yourModulePath/yourQuillModule.js'
 Quill.register('modules/yourQuillModule', yourQuillModule)
@@ -146,31 +146,29 @@ Quill.register('modules/yourQuillModule', yourQuillModule)
         }
       }
     },
-    // if you need to manually control the data synchronization, parent component needs to explicitly emit an event instead of relying on implicit binding
+    // manually control the data synchronization
     // 如果需要手动控制数据同步，父组件需要显式地处理changed事件
     methods: {
-      onEditorBlur(editor) {
-        console.log('editor blur!', editor)
+      onEditorBlur(quill) {
+        console.log('editor blur!', quill)
       },
-      onEditorFocus(editor) {
-        console.log('editor focus!', editor)
+      onEditorFocus(quill) {
+        console.log('editor focus!', quill)
       },
-      onEditorReady(editor) {
-        console.log('editor ready!', editor)
+      onEditorReady(quill) {
+        console.log('editor ready!', quill)
       },
       onEditorChange({ quill, html, text }) {
         console.log('editor change!', quill, html, text)
         this.content = html
       }
     },
-    // get the current quill instace object.
     computed: {
       editor() {
         return this.$refs.myQuillEditor.quill
       }
     },
     mounted() {
-      // you can use current editor object to do something(quill methods)
       console.log('this is current quill instance object', this.editor)
     }
   }

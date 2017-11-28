@@ -1,17 +1,6 @@
 language: node_js
 node_js:
-  - "7"
-before_install:
-	- "npm install -g npm@^5"
-	- npm -v
-  - echo -e "npm installed!"
-install:
-  - npm i -g karma
-  - npm i -g webpack
-  - npm i -g babel-eslint
-  - npm i
-script:
-  - npm run test
+  - "5"
+  - "5.1"
 after_success:
-  - npm prune --production  # 删除devDependencies
-#   - npm publish # publish to npm
+  - codeclimate-test-reporter < ./test/unit/coverage/lcov.info
