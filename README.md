@@ -18,11 +18,8 @@
 # Example
 [Demo Page](https://surmon-china.github.io/vue-quill-editor/)
 
-# Update
-This component is a simple and lightweight editor. It doesn't depend on any other resources except quill core and css. Quill is an open source prototypical editor which has a powerful extension API and module registration function. If you need any other attached functions, please program on your own or use other extention modules. Finally, please don't ask the questions like whether i can realize some function in the editor or why not. Thanks.
 
-
-# Use Setup
+# Use
 
 ### Install
 
@@ -70,6 +67,8 @@ if (process.browser) {
 
 // if you need register quill modules, you need to introduce and register before the vue program is instantiated
 import Quill from 'quill'
+// or 
+import { Quill } from 'vue-quill-editor'
 import { yourQuillModule } from '../yourModulePath/yourQuillModule.js'
 Quill.register('modules/yourQuillModule', yourQuillModule)
 ```
@@ -178,13 +177,16 @@ Quill.register('modules/yourQuillModule', yourQuillModule)
 </script>
 ```
 
-# Extends
+
+# Modules
 - [quill-image-resize-module](https://github.com/kensnyder/quill-image-resize-module)
 - [quill-image-drop-module](https://github.com/kensnyder/quill-image-drop-module)
+- [more modules](https://github.com/search?o=desc&q=quill+module&s=stars&type=Repositories&utf8=%E2%9C%93)
+
 
 # Issues
 - [Quill - Modules - ImageImport and ImageResize](https://www.webpackbin.com/bins/-Ket3Oz1330Cy0MbddU3)
-- [Quill - oolbar - attributes](https://github.com/quilljs/quill/issues/1084)
+- [Quill - toolbar - attributes](https://github.com/quilljs/quill/issues/1084)
 - [Quill - Issues - Option to insert an image from a URL](https://github.com/quilljs/quill/issues/893)
 - [如何将图片上传至七牛等服务器](https://github.com/surmon-china/vue-quill-editor/issues/102)
 - [How vue-quill-editor combine with the syntax highlighter module of highlight.js ](https://github.com/surmon-china/vue-quill-editor/issues/39)
