@@ -16,20 +16,37 @@
 基于 Quill、适用于 Vue 的富文本编辑器，支持服务端渲染和单页应用。
 
 
-# Example
+## Example
 [Demo Page](https://surmon-china.github.io/vue-quill-editor/)
 
 
-# Use
+## Use
 
 ### Install
+
+#### NPM
 
 ``` bash
 npm install vue-quill-editor --save
 ```
 
+#### CDN
+
+``` html
+<link rel="stylesheet" href="path/to/quill.core.css"/>
+<link rel="stylesheet" href="path/to/quill.snow.css"/>
+<link rel="stylesheet" href="path/to/quill.bubble.css"/>
+<script type="text/javascript" src="path/to/quill.js"></script>
+<script type="text/javascript" src="path/to/vue.min.js"></script>
+<script type="text/javascript" src="path/to/dist/vue-quill-editor.js"></script>
+<script type="text/javascript">
+  Vue.use(window.VueQuillEditor, /* {  default global options } */)
+</script>
+```
 
 ### Mount
+
+**mount with global**
 
 ``` javascript
 // import
@@ -50,7 +67,11 @@ require('quill/dist/quill.bubble.css')
 
 // mount with global
 Vue.use(VueQuillEditor, /* {  default global options } */)
+```
 
+**mount with component**
+
+```javascript
 // mount with component
 import { quillEditor } from 'vue-quill-editor'
 
@@ -59,13 +80,21 @@ export default {
     quillEditor
   }
 }
+```
 
+**mount with ssr**
+
+```javascript
 // mount with ssr
 if (process.browser) {
   const VueQuillEditor = require('vue-quill-editor/dist/ssr')
   Vue.use(VueQuillEditor)
 }
+```
 
+**register quill module**
+
+```javascript
 // register quill modules, you need to introduce and register before the vue program is instantiated
 import Quill from 'quill' // or from 'vue-quill-editor'
 import { Quill } from 'vue-quill-editor'
@@ -187,23 +216,23 @@ Quill.register('modules/yourQuillModule', yourQuillModule)
 ```
 
 
-# Modules
+## Modules
 - [quill-image-resize-module](https://github.com/kensnyder/quill-image-resize-module)
 - [quill-image-drop-module](https://github.com/kensnyder/quill-image-drop-module)
 - [quilljs-table](https://github.com/dost/quilljs-table)
 - [more modules...](https://github.com/search?o=desc&q=quill+module&s=stars&type=Repositories&utf8=%E2%9C%93)
 
 
-# Issues
+## Issues
 - [Add attributes from toolbar options](https://github.com/quilljs/quill/issues/1084)
 - [Option to insert an image from a URLL](https://github.com/quilljs/quill/issues/893)
 - [How vue-quill-editor combine with the syntax highlighter module of highlight.js](https://github.com/surmon-china/vue-quill-editor/issues/39)
 - [配合 element-ui 实现上传图片/视频到七牛 demo](https://github.com/surmon-china/vue-quill-editor/issues/102)
 
 
-# Quill documents
+## Quill documents
 [Api docs](https://quilljs.com/docs/quickstart/)
 
 
-# Author Blog
+## Author Blog
 [Surmon](https://surmon.me)
