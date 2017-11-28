@@ -1,7 +1,7 @@
 
 ## CHANGELOG
 
-### v3.0.0
+### V3.0.0
 
 #### use
 1. require styles
