@@ -6,9 +6,8 @@
 </template>
 
 <script>
-  const defaultOptions = require('./options')
-  const objectAssign = require('./object-assign')
   const Quill = window.Quill || require('quill')
+  const defaultOptions = require('../utils/options')
 
   export default {
     name: 'quill-editor',
@@ -46,8 +45,28 @@
       initialize() {
         if (this.$el) {
 
-          // Options and instance
-          this._options = objectAssign({}, this.defaultOptions, this.globalOptions, this.options)
+          // Options
+          const { options, defaultOptions, globalOptions } = this
+          this._options = ['theme', 'modules', 'readOnly', 'boundary', 'placeholder'].reduce((ops, key) => {
+            const [ov, gv, dv] = [options[key], globalOptions[key], defaultOptions[key]]
+            if (ov !== undefined) {
+              ops[key] = ov
+            } else if (gv !== undefined) {
+              ops[key] = gv
+            } else if (dv !== undefined) {
+              ops[key] = dv
+            }
+            return ops
+          }, {})
+
+          const [omt, gomt, domt] = [
+            options.modules ? options.modules.toolbar : null,
+            globalOptions.modules ? globalOptions.modules.toolbar : null,
+            defaultOptions.modules ? defaultOptions.modules.toolbar : null
+          ]
+          this._options.modules.toolbar = this._options.modules.toolbar || (omt ? omt : (gomt ? gomt : domt))
+
+          // Instance
           this.quill = new Quill(this.$refs.editor, this._options)
 
           // Set editor content

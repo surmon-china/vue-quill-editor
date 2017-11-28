@@ -1,1 +1,143 @@
-!function(t,e){"object"==typeof exports&&"object"==typeof module?module.exports=e(require("quill")):"function"==typeof define&&define.amd?define(["quill"],e):"object"==typeof exports?exports.VueQuillEditor=e(require("quill")):t.VueQuillEditor=e(t.quill)}(this,function(t){return function(t){function e(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return t[r].call(o.exports,o,o.exports,e),o.l=!0,o.exports}var n={};return e.m=t,e.c=n,e.i=function(t){return t},e.d=function(t,n,r){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:r})},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="/",e(e.s=5)}([function(e,n){e.exports=t},function(t,e,n){"use strict";var r=arguments;t.exports=Object.assign||function(t,e){for(var n=function(t,e,n){return"undefined"!=typeof Reflect&&Reflect&&Reflect.apply?Reflect.apply(t,e,n):t.call(e,n)},o=void 0,a=void 0,i=function(t){if(null===t||void 0===t)throw new TypeError("Object.assign cannot be called with null or undefined");return Object(t)}(t),l=1;l<r.length;l++){o=Object(r[l]);for(var u in o)n(Object.prototype.hasOwnProperty,o,u)&&(i[u]=o[u]);if(Object.getOwnPropertySymbols){a=Object.getOwnPropertySymbols(o);for(var c=0;c<a.length;c++)n(Object.prototype.propIsEnumerable,o,a[c])&&(i[a[c]]=o[a[c]])}}return i}},function(t,e,n){"use strict";t.exports={theme:"snow",boundary:document.body,modules:{toolbar:[["bold","italic","underline","strike"],["blockquote","code-block"],[{header:1},{header:2}],[{list:"ordered"},{list:"bullet"}],[{script:"sub"},{script:"super"}],[{indent:"-1"},{indent:"+1"}],[{direction:"rtl"}],[{size:["small",!1,"large","huge"]}],[{header:[1,2,3,4,5,6,!1]}],[{color:[]},{background:[]}],[{font:[]}],[{align:[]}],["clean"],["link","image","video"]]},placeholder:"Insert text here ...",readOnly:!1}},,,function(t,e,n){"use strict";var r=n(2),o=n(1),a=window.Quill||n(0),i={Quill:a,install:function(t,e){var n=function(t,e,n){var r=null;return e.arg?r=e.arg:n.data.attrs&&n.data.attrs.instanceName?r=n.data.attrs.instanceName:t.id&&(r=t.id),r||"quill"};t.directive("quill",{inserted:function(t,i,l){var u=l.context,c=i.value||{},d=n(t,i,l),s=u[d],f=function(t,e,n){var r=t.data&&t.data.on||t.componentOptions&&t.componentOptions.listeners;r&&r[e]&&r[e].fns(n)};if(!s){var p=o({},r,e||{},c);s=u[d]=new a(t,p);var b=l.data.model,v=l.data.attrs?l.data.attrs.content:null,g=l.data.attrs?l.data.attrs.disabled:null;(b||v)&&s.pasteHTML(b?b.value:v),g&&s.enable(!1),s.on("selection-change",function(t){t?f(l,"focus",s):f(l,"blur",s)}),s.on("text-change",function(e,n,r){var o=t.children[0].innerHTML,a=s.getText();"<p><br></p>"===o&&(o="",s.root.innerHTML=o),b&&b.callback(o),f(l,"change",{text:a,html:o,quill:s})}),f(l,"ready",s)}},componentUpdated:function(t,e,r){var o=r.context,a=n(t,e,r),i=(e.value,o[a]);if(i){var l=r.data.model,u=r.data.attrs?r.data.attrs.content:null,c=r.data.attrs?r.data.attrs.disabled:null,d=l?l.value:u,s=t.children[0].innerHTML;if(i.enable(!c),d){if(d!=s){var f=i.getSelection();i.root.innerHTML=d,setTimeout(function(){i.setSelection(f)})}}else i.setText("")}},unbind:function(t,e,n){n.context[e.arg]&&(n.context[e.arg]=null,delete n.context[e.arg])}})}};t.exports=i}])});
+'use strict';
+
+var Quill = require('quill');
+var defaultOptions = require('../utils/options');
+
+var quillEditor = function quillEditor(globalOptions) {
+  var getInstanceName = function getInstanceName(el, binding, vnode) {
+    var instanceName = null;
+    if (binding.arg) {
+      instanceName = binding.arg;
+    } else if (vnode.data.attrs && (vnode.data.attrs.instanceName || vnode.data.attrs['instance-name'])) {
+      instanceName = vnode.data.attrs.instanceName || vnode.data.attrs['instance-name'];
+    } else if (el.id) {
+      instanceName = el.id;
+    }
+    return instanceName || 'quill';
+  };
+
+  return {
+    inserted: function inserted(el, binding, vnode) {
+      var self = vnode.context;
+      var options = binding.value || {};
+      var instanceName = getInstanceName(el, binding, vnode);
+      var quill = self[instanceName];
+
+      var eventEmit = function eventEmit(vnode, name, data) {
+        var handlers = vnode.data && vnode.data.on || vnode.componentOptions && vnode.componentOptions.listeners;
+        if (handlers && handlers[name]) handlers[name].fns(data);
+      };
+
+      if (!quill) {
+        var quillOptions = ['theme', 'modules', 'readOnly', 'boundary', 'placeholder'].reduce(function (ops, key) {
+          var _ref = [options[key], globalOptions[key], defaultOptions[key]],
+              ov = _ref[0],
+              gv = _ref[1],
+              dv = _ref[2];
+
+          if (ov !== undefined) {
+            ops[key] = ov;
+          } else if (gv !== undefined) {
+            ops[key] = gv;
+          } else if (dv !== undefined) {
+            ops[key] = dv;
+          }
+          return ops;
+        }, {});
+
+        var omt = options.modules ? options.modules.toolbar : null,
+            gomt = globalOptions.modules ? globalOptions.modules.toolbar : null,
+            domt = defaultOptions.modules ? defaultOptions.modules.toolbar : null;
+
+        quillOptions.modules.toolbar = quillOptions.modules.toolbar || (omt ? omt : gomt ? gomt : domt);
+
+        quill = self[instanceName] = new Quill(el, quillOptions);
+
+        var model = vnode.data.model;
+        var _value = vnode.data.attrs ? vnode.data.attrs.value : null;
+        var _content = vnode.data.attrs ? vnode.data.attrs.content : null;
+        var disabled = vnode.data.attrs ? vnode.data.attrs.disabled : null;
+        var content = model ? model.value : _value || _content;
+
+        if (content) {
+          quill.pasteHTML(content);
+        }
+
+        if (disabled) {
+          quill.enable(false);
+        }
+
+        quill.on('selection-change', function (range) {
+          if (!range) {
+            eventEmit(vnode, 'blur', quill);
+          } else {
+            eventEmit(vnode, 'focus', quill);
+          }
+        });
+
+        quill.on('text-change', function (delta, oldDelta, source) {
+          var html = el.children[0].innerHTML;
+          var text = quill.getText();
+          if (html === '<p><br></p>') {
+            html = '';
+            quill.root.innerHTML = html;
+          }
+          if (model) {
+            model.callback(html);
+          }
+          eventEmit(vnode, 'input', html);
+          eventEmit(vnode, 'change', { text: text, html: html, quill: quill });
+        });
+
+        eventEmit(vnode, 'ready', quill);
+      }
+    },
+    componentUpdated: function componentUpdated(el, binding, vnode) {
+      var self = vnode.context;
+      var instanceName = getInstanceName(el, binding, vnode);
+      var options = binding.value || {};
+      var quill = self[instanceName];
+      if (quill) {
+        var model = vnode.data.model;
+        var _value = vnode.data.attrs ? vnode.data.attrs.value : null;
+        var _content = vnode.data.attrs ? vnode.data.attrs.content : null;
+        var disabled = vnode.data.attrs ? vnode.data.attrs.disabled : null;
+        var content = model ? model.value : _value || _content;
+        var newData = content;
+        var oldData = el.children[0].innerHTML;
+        quill.enable(!disabled);
+        if (newData) {
+          if (newData != oldData) {
+            var range = quill.getSelection();
+            quill.root.innerHTML = newData;
+            setTimeout(function () {
+              quill.setSelection(range);
+            });
+          }
+        } else {
+          quill.setText('');
+        }
+      }
+    },
+    unbind: function unbind(el, binding, vnode) {
+      if (vnode.context[binding.arg]) {
+        vnode.context[binding.arg] = null;
+        delete vnode.context[binding.arg];
+      }
+    }
+  };
+};
+
+var VueQuillEditor = {
+  Quill: Quill,
+
+  quillEditor: quillEditor({}),
+
+  install: function install(Vue) {
+    var globalOptions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    Vue.directive('quill', quillEditor(globalOptions));
+  }
+};
+
+module.exports = VueQuillEditor;

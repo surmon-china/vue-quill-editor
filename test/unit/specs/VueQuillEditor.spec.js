@@ -1,20 +1,24 @@
 
-// import Quill from 'quill'
 import Vue from 'vue/dist/vue.js'
 import VueQuillEditor, { Quill } from '../../../src/index.js'
 import VueQuillEditorSsr from '../../../src/ssr.js'
 
-console.log('--------VueQuillEditor', VueQuillEditor)
-console.log('--------VueQuillEditorSsr', VueQuillEditorSsr)
+window.Vue = Vue
+
+// console.log('--------VueQuillEditor', VueQuillEditor)
+// console.log('--------VueQuillEditorSsr', VueQuillEditorSsr)
 
 describe('vue-quill-editor', () => {
 
   Vue.use(VueQuillEditor, {
     placeholder: 'global placeholder'
   })
+  Vue.use(VueQuillEditorSsr, {
+    placeholder: 'global ssr placeholder'
+  })
 
   // 全局安装
-  describe('Global install component', () => {
+  describe('Global install spa:component', () => {
     it(' - should can get the quill element', done => {
       const vm = new Vue({
         template: `<div><quill-editor v-model="content"></quill-editor></div>`,
@@ -229,7 +233,7 @@ describe('vue-quill-editor', () => {
   })
 
   // 多个循环实例
-  describe('Multi edirot instance', () => {
+  describe('Multi edirot component instance', () => {
     it(' - should update value after any change text', done => {
       const eventLogs = []
       const vm = new Vue({
@@ -276,58 +280,108 @@ describe('vue-quill-editor', () => {
     })
   })
 
-  // 动态配置
-
-  /*
-  // SSR 测试
-  describe('Global install component', () => {
-    it(' - should update value after any change text', () => {
+  // SSR 全局安装测试
+  describe('Global install ssr:directive', () => {
+    it(' - should get quill instance and capture event', done => {
+      const eventLogs = []
       const vm = new Vue({
         template: `<div>
-                      <quill-editor ref="myTextEditor"
-                                    v-model="content"
-                                    :options="editorOption"
-                                    @blur="onEditorBlur"
-                                    @focus="onEditorFocus"
-                                    @ready="onEditorReady">
-                      </quill-editor>
+                    <div class="quill-editor" 
+                         ref="editor"
+                         @ready="onEditorReady"
+                         :value="content"
+                         v-quill:myQuillEditor="editorOption">
+                    </div>
                   </div>
                   `,
         data: {
-          content: '<p>test content</p>',
+          content: '<p>test ssr content</p>',
           editorOption: {}
         },
-        computed: {
-          quill() {
-            return this.$refs.myTextEditor.quill
-          }
-        },
         methods: {
-          onEditorBlur(quill) {
-            // console.log('onEditorBlur', quill)
-          },
-          onEditorFocus(quill) {
-            // console.log('onEditorFocus', quill)
-          },
           onEditorReady(quill) {
-            // console.log('onEditorReady', quill)
-            expect(quill.editor.delta.ops).to.deep.equal([{ insert: "test content\n" }])
+            eventLogs.push('ssr/onEditorReady')
+            eventLogs.push(quill instanceof Quill)
           }
         },
         mounted() {
-          setTimeout(() => {
-            this.content = '<p>test change</p>'
-          }, 1000)
+          eventLogs.push('ssr/mounted')
         }
       }).$mount()
-
-      // 实例测试 innstance test
-      expect(vm.quill instanceof Quill).to.deep.equal(true)
+      expect(eventLogs[0]).to.deep.equal('ssr/onEditorReady')
+      expect(eventLogs[1]).to.deep.equal(true)
+      expect(eventLogs[2]).to.deep.equal('ssr/mounted')
+      vm.content = '<p>test ssr change</p>'
+      Vue.nextTick(() => {
+        expect(vm.myQuillEditor.getText()).to.deep.equal('test ssr content\n')
+        done()
+      })
     })
   })
 
-  // ssr全局安装
-
-  // ssr
-  */
+  // 多个 SSR 平铺测试 placeholder: 'ssr placeholder'
+  describe('Multi edirot directive instance', () => {
+    it(' - should update value after any change text', done => {
+      const eventLogs = []
+      const vm = new Vue({
+        template: `<div>
+                    <div class="quill-editor" 
+                         v-quill="buildOptions(key)"
+                         v-for="(content, key) in contents"
+                         @ready="onEditorReady(key)"
+                         :instance-name="'editor-' + key"
+                         :content="content"
+                         :key="key">
+                    </div>
+                  </div>
+                  `,
+        data: {
+          contents: {
+            a: '<p>a-test ssr content</p>',
+            b: '<p>b-test ssr content</p>',
+            c: '<p>c-test ssr content</p>'
+          }
+        },
+        methods: {
+          buildOptions(key) {
+            if (key === 'a') {
+              return {}
+            }
+            if (key === 'b') {
+              return {
+                placeholder: `${key}-ssr placeholder`
+              }
+            }
+            if (key === 'c') {
+              return {}
+            }
+          },
+          onEditorReady(key) {
+            eventLogs.push(`${key}-onEditorReady`)
+          }
+        },
+        mounted() {
+          eventLogs.push('ssr/mounted')
+        }
+      }).$mount()
+      expect(eventLogs[0]).to.deep.equal('a-onEditorReady')
+      expect(eventLogs[1]).to.deep.equal('b-onEditorReady')
+      expect(eventLogs[2]).to.deep.equal('c-onEditorReady')
+      expect(eventLogs[3]).to.deep.equal('ssr/mounted')
+      expect(vm['editor-a'] instanceof Quill).to.deep.equal(true)
+      expect(vm['editor-b'] instanceof Quill).to.deep.equal(true)
+      expect(vm['editor-c'] instanceof Quill).to.deep.equal(true)
+      expect(vm['editor-a'].getText()).to.deep.equal('a-test ssr content\n')
+      vm.contents.b = '<span>b-test ssr change</span>'
+      Vue.nextTick(() => {
+        Vue.nextTick(() => {
+          expect(vm['editor-b'].getText()).to.deep.equal('b-test ssr change\n')
+          expect(vm['editor-b'].editor.delta.ops).to.deep.equal([{ insert: 'b-test ssr change\n' }])
+          expect(vm['editor-b'].options.placeholder).to.deep.equal('b-ssr placeholder')
+          expect(vm['editor-c'].options.placeholder).to.deep.equal('global ssr placeholder')
+          done()
+        })
+      })
+    })
+  })
 })

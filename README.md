@@ -134,7 +134,7 @@ Quill.register('modules/yourQuillModule', yourQuillModule)
       onEditorChange(event) {
         console.log('onEditorChange')
       }
-    }
+    },
     // Omit the same parts as in the following component sample code
     // ...
   }

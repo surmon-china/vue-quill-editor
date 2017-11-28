@@ -12,9 +12,7 @@ const VueQuillEditor = {
   quillEditor,
   install(Vue, globalOptions) {
     if (globalOptions) {
-      quillEditor.props.globalOptions.default = () => {
-        return globalOptions
-      }
+      quillEditor.props.globalOptions.default = () => globalOptions
     }
     Vue.component(quillEditor.name, quillEditor)
   }

@@ -38,7 +38,9 @@
     "vue editor"
   ],
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --config config/build.conf.js",
+    "build:spa": "cross-env NODE_ENV=production webpack --config config/build.conf.js",
+    "build:ssr": "babel src/ssr.js --out-file dist/ssr.js",
+    "build": "npm run build:spa && npm run build:ssr",
     "unit": "cross-env BABEL_ENV=test NODE_ENV=testing karma start test/unit/karma.conf.js --watch",
     "test": "cross-env BABEL_ENV=test NODE_ENV=testing karma start test/unit/karma.conf.js --single-run",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
@@ -47,14 +49,17 @@
   "dependencies": {
     "quill": "^1.3.4"
   },
+  "expDependencies": {
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "highlight.js": "^9.12.0",
+    "quill-image-drop-module": "^1.0.3",
+    "quill-image-resize-module": "^3.0.0"
+  },
   "devDependencies": {
-    "babel-core": "^6.24.1",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-es2015": "^6.24.1",
-    "cross-env": "^5.0.0",
-    "uglify-js": "^3.0.15",
     "autoprefixer": "^6.7.2",
     "babel-cli": "^6.23.0",
+    "babel-core": "^6.24.1",
     "babel-eslint": "^7.1.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.2",
     "babel-loader": "^6.2.10",
@@ -63,12 +68,15 @@
     "babel-plugin-transform-es2015-destructuring": "^6.23.0",
     "babel-plugin-transform-export-extensions": "^6.8.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.22.0",
     "babel-register": "^6.0.0",
     "chai": "^3.5.0",
     "chalk": "^1.1.3",
     "connect-history-api-fallback": "^1.1.0",
     "copy-webpack-plugin": "^4.0.0",
+    "cross-env": "^5.0.0",
     "css-loader": "^0.25.0",
     "eslint": "^3.14.1",
     "eslint-config-standard": "^6.1.0",
@@ -108,6 +116,7 @@
     "shelljs": "^0.7.4",
     "sinon": "^2.1.0",
     "sinon-chai": "^2.8.0",
+    "uglify-js": "^3.0.15",
     "url-loader": "^0.5.7",
     "vue": "^2.5.0",
     "vue-hot-reload-api": "^1.2.0",

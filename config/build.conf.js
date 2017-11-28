@@ -7,11 +7,10 @@ const resolve = dir => path.join(__dirname, '..', dir)
 
 module.exports = merge(baseConfig, {
   entry: {
-    'ssr': './src/ssr.js',
     'vue-quill-editor': './src/index.js'
   },
   externals: {
-    quill: 'quill',
+    quill: 'quill'
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
