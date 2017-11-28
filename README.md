@@ -22,7 +22,7 @@
 
 ## Install
 
-### CDN
+#### CDN
 
 ``` html
 <link rel="stylesheet" href="path/to/quill.core.css"/>
@@ -36,7 +36,7 @@
 </script>
 ```
 
-### NPM
+#### NPM
 
 ``` bash
 npm install vue-quill-editor --save
@@ -44,7 +44,7 @@ npm install vue-quill-editor --save
 
 ### Mount
 
-**mount with global**
+#### mount with global
 
 ``` javascript
 import Vue from 'vue'
@@ -58,7 +58,7 @@ import 'quill/dist/quill.bubble.css'
 Vue.use(VueQuillEditor, /* {  default global options } */)
 ```
 
-**mount with component**
+#### mount with component
 
 ```javascript
 import { quillEditor } from 'vue-quill-editor'
@@ -70,7 +70,7 @@ export default {
 }
 ```
 
-**mount with ssr**
+#### mount with ssr
 
 ```javascript
 // if used in nuxt.js/ssr, you should keep require it only in browser build environment
@@ -80,7 +80,7 @@ if (process.browser) {
 }
 ```
 
-**register quill module**
+#### register quill module
 
 ```javascript
 // register quill modules, you need to introduce and register before the vue program is instantiated
