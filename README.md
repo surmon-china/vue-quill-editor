@@ -61,6 +61,10 @@ Vue.use(VueQuillEditor, /* {  default global options } */)
 #### mount with component
 
 ```javascript
+// require styles
+// import 'quill/dist/quill.core.css'
+// ...
+
 import { quillEditor } from 'vue-quill-editor'
 
 export default {
