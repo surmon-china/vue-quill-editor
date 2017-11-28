@@ -48,7 +48,7 @@ require('quill/dist/quill.bubble.css')
 
 
 // mount with global
-Vue.use(VueQuillEditor)
+Vue.use(VueQuillEditor, /* {  default global options }*/)
 
 // or mount with component(can't work in Nuxt.js/SSR)
 import { quillEditor } from 'vue-quill-editor'
@@ -181,15 +181,15 @@ Quill.register('modules/yourQuillModule', yourQuillModule)
 # Modules
 - [quill-image-resize-module](https://github.com/kensnyder/quill-image-resize-module)
 - [quill-image-drop-module](https://github.com/kensnyder/quill-image-drop-module)
-- [more modules](https://github.com/search?o=desc&q=quill+module&s=stars&type=Repositories&utf8=%E2%9C%93)
+- [more modules...](https://github.com/search?o=desc&q=quill+module&s=stars&type=Repositories&utf8=%E2%9C%93)
 
 
 # Issues
 - [Quill - Modules - ImageImport and ImageResize](https://www.webpackbin.com/bins/-Ket3Oz1330Cy0MbddU3)
 - [Quill - toolbar - attributes](https://github.com/quilljs/quill/issues/1084)
 - [Quill - Issues - Option to insert an image from a URL](https://github.com/quilljs/quill/issues/893)
-- [如何将图片上传至七牛等服务器](https://github.com/surmon-china/vue-quill-editor/issues/102)
 - [How vue-quill-editor combine with the syntax highlighter module of highlight.js ](https://github.com/surmon-china/vue-quill-editor/issues/39)
+- [如何将图片上传至七牛等服务器](https://github.com/surmon-china/vue-quill-editor/issues/102)
 
 
 # Quill documents
