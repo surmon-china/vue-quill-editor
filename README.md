@@ -20,11 +20,9 @@
 [Demo Page](https://surmon-china.github.io/vue-quill-editor/)
 
 
-## Use
+## Install
 
-### Install
-
-**CDN**
+### CDN
 
 ``` html
 <link rel="stylesheet" href="path/to/quill.core.css"/>
@@ -38,7 +36,7 @@
 </script>
 ```
 
-**NPM**
+### NPM
 
 ``` bash
 npm install vue-quill-editor --save
