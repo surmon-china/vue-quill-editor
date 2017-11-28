@@ -5,8 +5,10 @@
 * Github: https://github.com/surmon-china/vue-quill-editor
 */
 
-const Quill = window.Quill || require('quill')
-const quillEditor = require('./editor.vue').default
+import _Quill from 'quill'
+import quillEditor from './editor.vue'
+const Quill = window.Quill || _Quill
+
 const VueQuillEditor = {
   Quill,
   quillEditor,
@@ -18,4 +20,4 @@ const VueQuillEditor = {
   }
 }
 
-module.exports = VueQuillEditor
+export default VueQuillEditor

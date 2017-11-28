@@ -1,5 +1,5 @@
 
-module.exports = {
+export default {
   theme: 'snow',
   boundary: document.body, 
   modules: {

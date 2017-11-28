@@ -1,7 +1,22 @@
 'use strict';
 
-var Quill = require('quill');
-var defaultOptions = require('../utils/options');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _quill = require('quill');
+
+var _quill2 = _interopRequireDefault(_quill);
+
+var _objectAssign = require('object-assign');
+
+var _objectAssign2 = _interopRequireDefault(_objectAssign);
+
+var _options = require('../utils/options');
+
+var _options2 = _interopRequireDefault(_options);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var quillEditor = function quillEditor(globalOptions) {
   var getInstanceName = function getInstanceName(el, binding, vnode) {
@@ -29,29 +44,9 @@ var quillEditor = function quillEditor(globalOptions) {
       };
 
       if (!quill) {
-        var quillOptions = ['theme', 'modules', 'readOnly', 'boundary', 'placeholder'].reduce(function (ops, key) {
-          var _ref = [options[key], globalOptions[key], defaultOptions[key]],
-              ov = _ref[0],
-              gv = _ref[1],
-              dv = _ref[2];
+        var quillOptions = (0, _objectAssign2.default)({}, _options2.default, globalOptions, options);
 
-          if (ov !== undefined) {
-            ops[key] = ov;
-          } else if (gv !== undefined) {
-            ops[key] = gv;
-          } else if (dv !== undefined) {
-            ops[key] = dv;
-          }
-          return ops;
-        }, {});
-
-        var omt = options.modules ? options.modules.toolbar : null,
-            gomt = globalOptions.modules ? globalOptions.modules.toolbar : null,
-            domt = defaultOptions.modules ? defaultOptions.modules.toolbar : null;
-
-        quillOptions.modules.toolbar = quillOptions.modules.toolbar || (omt ? omt : gomt ? gomt : domt);
-
-        quill = self[instanceName] = new Quill(el, quillOptions);
+        quill = self[instanceName] = new _quill2.default(el, quillOptions);
 
         var model = vnode.data.model;
         var _value = vnode.data.attrs ? vnode.data.attrs.value : null;
@@ -129,7 +124,7 @@ var quillEditor = function quillEditor(globalOptions) {
 };
 
 var VueQuillEditor = {
-  Quill: Quill,
+  Quill: _quill2.default,
 
   quillEditor: quillEditor({}),
 
@@ -140,4 +135,4 @@ var VueQuillEditor = {
   }
 };
 
-module.exports = VueQuillEditor;
+exports.default = VueQuillEditor;

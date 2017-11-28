@@ -30,7 +30,7 @@
 
 <script>
   import hljs from 'highlight.js'
-  import { Quill } from 'vue-quill-editor'
+  import VueQuillEditor, { Quill } from 'vue-quill-editor'
   import { ImageDrop } from 'quill-image-drop-module'
   import ImageResize from 'quill-image-resize-module'
   Quill.register('modules/imageDrop', ImageDrop)

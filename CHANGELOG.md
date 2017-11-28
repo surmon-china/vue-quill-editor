@@ -1,6 +1,11 @@
 
 ## CHANGELOG
 
+### V3.0.1
+
+1. add lib object-assign
+2. update the options assign logic
+
 ### V3.0.0
 
 #### use

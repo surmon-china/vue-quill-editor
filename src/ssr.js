@@ -5,13 +5,14 @@
 * Github: https://github.com/surmon-china/vue-quill-editor
 */
 
-// Require sources.
-const Quill = require('quill')
-const defaultOptions = require('../utils/options')
+// Require sources
+import Quill from 'quill'
+import objectAssign from 'object-assign'
+import defaultOptions from '../utils/options'
 
 const quillEditor = globalOptions => {
 
-  // Get quill instace name in directive.
+  // Get quill instace name in directive
   const getInstanceName = (el, binding, vnode) => {
     let instanceName = null
     if (binding.arg) {
@@ -31,35 +32,18 @@ const quillEditor = globalOptions => {
       const instanceName = getInstanceName(el, binding, vnode)
       let quill = self[instanceName]
 
-       // Emit event in Vue directive.
+       // Emit event in Vue directive
       const eventEmit = (vnode, name, data) => {
         const handlers = (vnode.data && vnode.data.on) || 
                          (vnode.componentOptions && vnode.componentOptions.listeners)
         if (handlers && handlers[name]) handlers[name].fns(data)
       }
 
-      // Initialize quill options.
+      // Initialize quill options
       if (!quill) {
 
         // Options
-        const quillOptions = ['theme', 'modules', 'readOnly', 'boundary', 'placeholder'].reduce((ops, key) => {
-          const [ov, gv, dv] = [options[key], globalOptions[key], defaultOptions[key]]
-          if (ov !== undefined) {
-            ops[key] = ov
-          } else if (gv !== undefined) {
-            ops[key] = gv
-          } else if (dv !== undefined) {
-            ops[key] = dv
-          }
-          return ops
-        }, {})
-
-        const [omt, gomt, domt] = [
-          options.modules ? options.modules.toolbar : null,
-          globalOptions.modules ? globalOptions.modules.toolbar : null,
-          defaultOptions.modules ? defaultOptions.modules.toolbar : null
-        ]
-        quillOptions.modules.toolbar = quillOptions.modules.toolbar || (omt ? omt : (gomt ? gomt : domt))
+        const quillOptions = objectAssign({}, defaultOptions, globalOptions, options)
 
         // Instance
         quill = self[instanceName] = new Quill(el, quillOptions)
@@ -110,7 +94,7 @@ const quillEditor = globalOptions => {
       }
     },
     
-    // Parse text model change.
+    // Parse text model change
     componentUpdated(el, binding, vnode) {
       const self = vnode.context
       const instanceName = getInstanceName(el, binding, vnode)
@@ -139,7 +123,7 @@ const quillEditor = globalOptions => {
       }
     },
     
-    // Destroy this directive.
+    // Destroy this directive
     unbind(el, binding, vnode) {
       if (vnode.context[binding.arg]) {
         vnode.context[binding.arg] = null
@@ -157,12 +141,12 @@ const VueQuillEditor = {
   // quillEditor
   quillEditor: quillEditor({}),
 
-   // Global quill default options.
+   // Global quill default options
   install(Vue, globalOptions = {}) {
 
-    // Mount quill directive for Vue global.
+    // Mount quill directive for Vue global
     Vue.directive('quill', quillEditor(globalOptions))
   }
 }
 
-module.exports = VueQuillEditor
+export default VueQuillEditor

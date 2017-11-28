@@ -32,7 +32,7 @@
 <script type="text/javascript" src="path/to/vue.min.js"></script>
 <script type="text/javascript" src="path/to/dist/vue-quill-editor.js"></script>
 <script type="text/javascript">
-  Vue.use(window.VueQuillEditor)
+  Vue.use(window.VueQuillEditor.default)
 </script>
 ```
 
@@ -217,7 +217,7 @@ Quill.register('modules/yourQuillModule', yourQuillModule)
 
 ## Issues
 - [Add attributes from toolbar options](https://github.com/quilljs/quill/issues/1084)
-- [Option to insert an image from a URLL](https://github.com/quilljs/quill/issues/893)
+- [Option to insert an image from a URL](https://github.com/quilljs/quill/issues/893)
 - [How vue-quill-editor combine with the syntax highlighter module of highlight.js](https://github.com/surmon-china/vue-quill-editor/issues/39)
 - [配合 element-ui 实现上传图片/视频到七牛 demo](https://github.com/surmon-china/vue-quill-editor/issues/102)
 
