@@ -40,7 +40,7 @@ npm install vue-quill-editor --save
 <script type="text/javascript" src="path/to/vue.min.js"></script>
 <script type="text/javascript" src="path/to/dist/vue-quill-editor.js"></script>
 <script type="text/javascript">
-  Vue.use(window.VueQuillEditor, /* {  default global options } */)
+  Vue.use(window.VueQuillEditor)
 </script>
 ```
 
@@ -49,30 +49,20 @@ npm install vue-quill-editor --save
 **mount with global**
 
 ``` javascript
-// import
 import Vue from 'vue'
 import VueQuillEditor from 'vue-quill-editor'
 
-
-// or require
-var Vue = require('vue')
-var VueQuillEditor = require('vue-quill-editor')
-
-
 // require styles
-require('quill/dist/quill.core.css')
-require('quill/dist/quill.snow.css')
-require('quill/dist/quill.bubble.css')
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 
-
-// mount with global
 Vue.use(VueQuillEditor, /* {  default global options } */)
 ```
 
 **mount with component**
 
 ```javascript
-// mount with component
 import { quillEditor } from 'vue-quill-editor'
 
 export default {
@@ -85,7 +75,7 @@ export default {
 **mount with ssr**
 
 ```javascript
-// mount with ssr
+// if used in nuxt.js/ssr, you should keep require it only in browser build environment
 if (process.browser) {
   const VueQuillEditor = require('vue-quill-editor/dist/ssr')
   Vue.use(VueQuillEditor)
@@ -96,8 +86,7 @@ if (process.browser) {
 
 ```javascript
 // register quill modules, you need to introduce and register before the vue program is instantiated
-import Quill from 'quill' // or from 'vue-quill-editor'
-import { Quill } from 'vue-quill-editor'
+import Quill from 'quill'
 import { yourQuillModule } from '../yourModulePath/yourQuillModule.js'
 Quill.register('modules/yourQuillModule', yourQuillModule)
 ```
@@ -172,7 +161,8 @@ Quill.register('modules/yourQuillModule', yourQuillModule)
 </template>
 
 <script>
-  // You can also register quill modules in the component
+
+  // you can also register quill modules in the component
   import Quill from 'quill'
   import { someModule } from '../yourModulePath/someQuillModule.js'
   Quill.register('modules/someModule', someModule)
