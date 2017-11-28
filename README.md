@@ -24,13 +24,7 @@
 
 ### Install
 
-#### NPM
-
-``` bash
-npm install vue-quill-editor --save
-```
-
-#### CDN
+**CDN**
 
 ``` html
 <link rel="stylesheet" href="path/to/quill.core.css"/>
@@ -42,6 +36,12 @@ npm install vue-quill-editor --save
 <script type="text/javascript">
   Vue.use(window.VueQuillEditor)
 </script>
+```
+
+**NPM**
+
+``` bash
+npm install vue-quill-editor --save
 ```
 
 ### Mount
@@ -87,7 +87,7 @@ if (process.browser) {
 ```javascript
 // register quill modules, you need to introduce and register before the vue program is instantiated
 import Quill from 'quill'
-import { yourQuillModule } from '../yourModulePath/yourQuillModule.js'
+import yourQuillModule from '../yourModulePath/yourQuillModule.js'
 Quill.register('modules/yourQuillModule', yourQuillModule)
 ```
 
@@ -224,5 +224,5 @@ Quill.register('modules/yourQuillModule', yourQuillModule)
 [Api docs](https://quilljs.com/docs/quickstart/)
 
 
-## Author Blog
+## Author
 [Surmon](https://surmon.me)
