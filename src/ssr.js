@@ -8,7 +8,6 @@
 // Require sources
 import Quill from 'quill'
 import objectAssign from 'object-assign'
-import defaultOptions from '../utils/options'
 
 const quillEditor = globalOptions => {
 
@@ -43,7 +42,30 @@ const quillEditor = globalOptions => {
       if (!quill) {
 
         // Options
-        const quillOptions = objectAssign({}, defaultOptions, globalOptions, options)
+        const quillOptions = objectAssign({}, {
+          theme: 'snow',
+          boundary: document.body, 
+          modules: {
+            toolbar: [
+              ['bold', 'italic', 'underline', 'strike'],
+              ['blockquote', 'code-block'],
+              [{ 'header': 1 }, { 'header': 2 }],
+              [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+              [{ 'script': 'sub' }, { 'script': 'super' }],
+              [{ 'indent': '-1' }, { 'indent': '+1' }],
+              [{ 'direction': 'rtl' }],
+              [{ 'size': ['small', false, 'large', 'huge'] }],
+              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+              [{ 'color': [] }, { 'background': [] }],
+              [{ 'font': [] }],
+              [{ 'align': [] }],
+              ['clean'],
+              ['link', 'image', 'video']
+            ]
+          },
+          placeholder: 'Insert text here ...',
+          readOnly: false
+        }, globalOptions, options)
 
         // Instance
         quill = self[instanceName] = new Quill(el, quillOptions)

@@ -12,10 +12,6 @@ var _objectAssign = require('object-assign');
 
 var _objectAssign2 = _interopRequireDefault(_objectAssign);
 
-var _options = require('../utils/options');
-
-var _options2 = _interopRequireDefault(_options);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var quillEditor = function quillEditor(globalOptions) {
@@ -44,7 +40,15 @@ var quillEditor = function quillEditor(globalOptions) {
       };
 
       if (!quill) {
-        var quillOptions = (0, _objectAssign2.default)({}, _options2.default, globalOptions, options);
+        var quillOptions = (0, _objectAssign2.default)({}, {
+          theme: 'snow',
+          boundary: document.body,
+          modules: {
+            toolbar: [['bold', 'italic', 'underline', 'strike'], ['blockquote', 'code-block'], [{ 'header': 1 }, { 'header': 2 }], [{ 'list': 'ordered' }, { 'list': 'bullet' }], [{ 'script': 'sub' }, { 'script': 'super' }], [{ 'indent': '-1' }, { 'indent': '+1' }], [{ 'direction': 'rtl' }], [{ 'size': ['small', false, 'large', 'huge'] }], [{ 'header': [1, 2, 3, 4, 5, 6, false] }], [{ 'color': [] }, { 'background': [] }], [{ 'font': [] }], [{ 'align': [] }], ['clean'], ['link', 'image', 'video']]
+          },
+          placeholder: 'Insert text here ...',
+          readOnly: false
+        }, globalOptions, options);
 
         quill = self[instanceName] = new _quill2.default(el, quillOptions);
 

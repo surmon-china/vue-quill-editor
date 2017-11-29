@@ -8,7 +8,7 @@
 <script>
   import _Quill from 'quill'
   import objectAssign from 'object-assign'
-  import defaultOptions from '../utils/options'
+  import defaultOptions from './options'
   const Quill = window.Quill || _Quill
   export default {
     name: 'quill-editor',

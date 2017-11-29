@@ -1,6 +1,10 @@
 
 ## CHANGELOG
 
+### V3.0.2
+
+1. assign options to ssr.js
+
 ### V3.0.1
 
 1. add lib object-assign
