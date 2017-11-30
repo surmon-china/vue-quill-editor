@@ -1,6 +1,11 @@
 
 ## CHANGELOG
 
+### V3.0.3
+
+1. fix import es module bug
+2. add test script
+
 ### V3.0.2
 
 1. assign options to ssr.js

@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.install = exports.quillEditor = exports.Quill = undefined;
 
 var _quill = require('quill');
 
@@ -14,7 +15,7 @@ var _objectAssign2 = _interopRequireDefault(_objectAssign);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var quillEditor = function quillEditor(globalOptions) {
+var quillDirective = function quillDirective(globalOptions) {
   var getInstanceName = function getInstanceName(el, binding, vnode) {
     var instanceName = null;
     if (binding.arg) {
@@ -127,16 +128,17 @@ var quillEditor = function quillEditor(globalOptions) {
   };
 };
 
-var VueQuillEditor = {
-  Quill: _quill2.default,
+var quillEditor = quillDirective({});
 
-  quillEditor: quillEditor({}),
+var install = function install(Vue) {
+  var globalOptions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-  install: function install(Vue) {
-    var globalOptions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-    Vue.directive('quill', quillEditor(globalOptions));
-  }
+  Vue.directive('quill', quillDirective(globalOptions));
 };
 
+var VueQuillEditor = { Quill: _quill2.default, quillEditor: quillEditor, install: install };
+
 exports.default = VueQuillEditor;
+exports.Quill = _quill2.default;
+exports.quillEditor = quillEditor;
+exports.install = install;

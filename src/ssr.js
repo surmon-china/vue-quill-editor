@@ -9,7 +9,7 @@
 import Quill from 'quill'
 import objectAssign from 'object-assign'
 
-const quillEditor = globalOptions => {
+const quillDirective = globalOptions => {
 
   // Get quill instace name in directive
   const getInstanceName = (el, binding, vnode) => {
@@ -155,20 +155,17 @@ const quillEditor = globalOptions => {
   }
 }
 
-const VueQuillEditor = {
+// quillEditor
+const quillEditor = quillDirective({})
 
-  // Quill
-  Quill,
+// Global quill default options
+const install = function (Vue, globalOptions = {}) {
 
-  // quillEditor
-  quillEditor: quillEditor({}),
-
-   // Global quill default options
-  install(Vue, globalOptions = {}) {
-
-    // Mount quill directive for Vue global
-    Vue.directive('quill', quillEditor(globalOptions))
-  }
+  // Mount quill directive for Vue global
+  Vue.directive('quill', quillDirective(globalOptions))
 }
 
+const VueQuillEditor = { Quill, quillEditor, install }
+
 export default VueQuillEditor
+export { Quill, quillEditor, install }

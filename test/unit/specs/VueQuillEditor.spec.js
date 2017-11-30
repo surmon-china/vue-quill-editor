@@ -1,7 +1,7 @@
 
 import Quill from 'quill'
 import Vue from 'vue/dist/vue.js'
-import VueQuillEditor from '../../../src/index.js'
+import VueQuillEditor, { quillEditor, install } from '../../../src/index.js'
 import VueQuillEditorSsr from '../../../src/ssr.js'
 
 window.Vue = Vue
@@ -16,6 +16,12 @@ describe('vue-quill-editor', () => {
   })
   Vue.use(VueQuillEditorSsr, {
     placeholder: 'global ssr placeholder'
+  })
+
+  // 测试解构是否成功
+  it('can get the object in es module', () => {
+    expect(typeof install).to.deep.equal('function')
+    expect(typeof quillEditor.methods.initialize).to.deep.equal('function')
   })
 
   // 全局安装
@@ -201,7 +207,7 @@ describe('vue-quill-editor', () => {
                   </div>
                   `,
         components: {
-          'VueQuillEditor': VueQuillEditor.quillEditor
+          'VueQuillEditor': quillEditor
         },
         data: {
           content: '<p>test content</p>',
