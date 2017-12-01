@@ -32,7 +32,7 @@
 <script type="text/javascript" src="path/to/vue.min.js"></script>
 <script type="text/javascript" src="path/to/dist/vue-quill-editor.js"></script>
 <script type="text/javascript">
-  Vue.use(window.VueQuillEditor.default)
+  Vue.use(window.VueQuillEditor)
 </script>
 ```
 
