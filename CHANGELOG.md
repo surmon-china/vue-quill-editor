@@ -3,6 +3,10 @@
 
 ### V3.0.3
 
+1. fix object assign in spa
+
+### V3.0.3
+
 1. fix import es module bug
 2. add test script
 

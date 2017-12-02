@@ -6,10 +6,37 @@
 </template>
 
 <script>
+  // require sources
   import _Quill from 'quill'
-  import objectAssign from 'object-assign'
   import defaultOptions from './options'
   const Quill = window.Quill || _Quill
+
+  // pollfill
+  if (typeof Object.assign != 'function') {
+    Object.defineProperty(Object, 'assign', {
+      value(target, varArgs) {
+        if (target == null) {
+          throw new TypeError('Cannot convert undefined or null to object')
+        }
+        const to = Object(target)
+        for (let index = 1; index < arguments.length; index++) {
+          const nextSource = arguments[index]
+          if (nextSource != null) {
+            for (const nextKey in nextSource) {
+              if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+                to[nextKey] = nextSource[nextKey]
+              }
+            }
+          }
+        }
+        return to
+      },
+      writable: true,
+      configurable: true
+    })
+  }
+
+  // export
   export default {
     name: 'quill-editor',
     data() {
@@ -47,7 +74,7 @@
         if (this.$el) {
 
           // Options
-          this._options = objectAssign({}, this.defaultOptions, this.globalOptions, this.options)
+          this._options = Object.assign({}, this.defaultOptions, this.globalOptions, this.options)
 
           // Instance
           this.quill = new Quill(this.$refs.editor, this._options)
