@@ -18,7 +18,10 @@
 
 
 ## Example
+
 [Demo Page](https://surmon-china.github.io/vue-quill-editor/)
+
+[CDN Example](https://jsfiddle.net/h0syhaab/)
 
 
 ## Install
