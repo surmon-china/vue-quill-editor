@@ -23,7 +23,7 @@
 
 #### use
 1. require styles [#111](https://github.com/surmon-china/vue-quill-editor/issues/111)
-2. add global default options [#111](https://github.com/surmon-china/vue-quill-editor/issues/110)
+2. add global default options [#110](https://github.com/surmon-china/vue-quill-editor/issues/110)
 3. update `{ editor, text, html }` to `{ quill, text, html }`
 
 #### project
