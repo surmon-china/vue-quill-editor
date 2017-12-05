@@ -23,6 +23,8 @@
 
 [CDN Example](https://jsfiddle.net/tng9r8j3/)
 
+[Nuxt.js/SSR example code](https://github.com/surmon-china/vue-quill-editor/blob/master/examples/nuxt-ssr-example)
+
 
 ## Install
 
@@ -66,8 +68,9 @@ Vue.use(VueQuillEditor, /* { default global options } */)
 
 ```javascript
 // require styles
-// import 'quill/dist/quill.core.css'
-// ...
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 
 import { quillEditor } from 'vue-quill-editor'
 
