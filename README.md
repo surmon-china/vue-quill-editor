@@ -1,5 +1,5 @@
 [![GitHub stars](https://img.shields.io/github/stars/surmon-china/vue-quill-editor.svg?style=flat-square)](https://github.com/surmon-china/vue-quill-editor/stargazers)
-[![Travis](https://img.shields.io/travis/rust-lang/rust.svg?style=flat-square)](https://github.com/surmon-china/vue-quill-editor)
+[![Build Status](https://travis-ci.org/surmon-china/vue-quill-editor.svg?branch=master)](https://travis-ci.org/surmon-china/vue-quill-editor)
 [![GitHub issues](https://img.shields.io/github/issues/surmon-china/vue-quill-editor.svg?style=flat-square)](https://github.com/surmon-china/vue-quill-editor/issues)
 [![GitHub forks](https://img.shields.io/github/forks/surmon-china/vue-quill-editor.svg?style=flat-square)](https://github.com/surmon-china/vue-quill-editor/network)
 [![GitHub last commit](https://img.shields.io/github/last-commit/google/skia.svg?style=flat-square)](https://github.com/surmon-china/vue-quill-editor)
