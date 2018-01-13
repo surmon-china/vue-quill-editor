@@ -216,6 +216,7 @@ Quill.register('modules/yourQuillModule', yourQuillModule)
 
 
 ## Modules
+- [vue-quill-image-upload](https://github.com/NextBoy/vue-quill-editor-upload)
 - [quill-image-resize-module](https://github.com/kensnyder/quill-image-resize-module)
 - [quill-image-drop-module](https://github.com/kensnyder/quill-image-drop-module)
 - [quilljs-table](https://github.com/dost/quilljs-table)
