@@ -1,6 +1,6 @@
 
 /*
-* Vue-Quill-Editor ssr.js
+* Vue-Quill-Editor index.js
 * Author: surmon@foxmail.com
 * Github: https://github.com/surmon-china/vue-quill-editor
 */
