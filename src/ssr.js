@@ -31,7 +31,7 @@ const quillDirective = globalOptions => {
       const instanceName = getInstanceName(el, binding, vnode)
       let quill = self[instanceName]
 
-       // Emit event in Vue directive
+      // Emit event in Vue directive
       const eventEmit = (vnode, name, data) => {
         const handlers = (vnode.data && vnode.data.on) || 
                          (vnode.componentOptions && vnode.componentOptions.listeners)
