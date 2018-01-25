@@ -1,7 +1,7 @@
 {
   "name": "vue-quill-editor",
   "description": "Quill editor component for Vue",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "license": "MIT",
   "private": false,
   "author": {
@@ -44,7 +44,8 @@
     "unit": "cross-env BABEL_ENV=test NODE_ENV=testing karma start test/unit/karma.conf.js --watch",
     "test": "cross-env BABEL_ENV=test NODE_ENV=testing karma start test/unit/karma.conf.js --single-run",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
-    "finish": "npm run lint && npm test && npm run build"
+    "finish": "npm run lint && npm test && npm run build",
+    "publish": "git push && git push --tags && npm publish"
   },
   "dependencies": {
     "object-assign": "^4.1.1",

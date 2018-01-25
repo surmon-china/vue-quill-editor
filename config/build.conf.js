@@ -10,7 +10,12 @@ module.exports = merge(baseConfig, {
     'vue-quill-editor': './src/index.js'
   },
   externals: {
-    quill: 'quill',
+    quill: {
+        root: 'Quill',
+        commonjs: 'quill',
+        commonjs2: 'quill',
+        amd: 'quill'
+    },
     'object-assign': 'object-assign'
   },
   output: {

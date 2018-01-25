@@ -1,6 +1,10 @@
 
 ## CHANGELOG
 
+### v3.0.5
+
+update umd module name and rebuild
+
 ### v3.0.4
 
 1. fix object assign in spa
