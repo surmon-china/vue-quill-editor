@@ -87,7 +87,7 @@ export default {
 // if used in nuxt.js/ssr, you should keep require it only in browser build environment
 if (process.browser) {
   const VueQuillEditor = require('vue-quill-editor/dist/ssr')
-  Vue.use(VueQuillEditor)
+  Vue.use(VueQuillEditor, /* { default global options } */)
 }
 ```
 
