@@ -25,6 +25,9 @@
 
 [Nuxt.js/SSR example code](https://github.com/surmon-china/vue-quill-editor/blob/master/examples/nuxt-ssr-example)
 
+#### Projects Using vue-quill-editor
+[Tamiat CMS](https://github.com/tamiat/tamiat/)
+
 
 ## Install
 
