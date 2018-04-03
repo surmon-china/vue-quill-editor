@@ -49,7 +49,10 @@
     props: {
       content: String,
       value: String,
-      disabled: Boolean,
+      disabled: {
+        type: Boolean,
+        default: false
+      },
       options: {
         type: Object,
         required: false,
