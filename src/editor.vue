@@ -49,7 +49,10 @@
     props: {
       content: String,
       value: String,
-      disabled: Boolean,
+      disabled: {
+        type: Boolean,
+        default: false
+      },
       options: {
         type: Object,
         required: false,
@@ -78,6 +81,8 @@
 
           // Instance
           this.quill = new Quill(this.$refs.editor, this._options)
+          
+          this.quill.enable(false)
 
           // Set editor content
           if (this.value || this.content) {
@@ -85,8 +90,8 @@
           }
 
           // Disabled editor
-          if (this.disabled) {
-            this.quill.enable(false)
+          if (!this.disabled) {
+            this.quill.enable(true)
           }
 
           // Mark model as touched if editor lost focus
