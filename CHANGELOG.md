@@ -1,6 +1,10 @@
 
 ## CHANGELOG
 
+### v3.0.6
+
+PR194, Prevents auto-focus when using within components with dynamically set content.
+
 ### v3.0.5
 
 update umd module name and rebuild
