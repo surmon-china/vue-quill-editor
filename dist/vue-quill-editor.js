@@ -11,6 +11,7 @@
             };
             return t[i].call(l.exports, l, l.exports, e), l.l = !0, l.exports
         }
+
         var n = {};
         return e.m = t, e.c = n, e.i = function (t) {
             return t
@@ -51,6 +52,7 @@
                 default: t
             }
         }
+
         Object.defineProperty(e, "__esModule", {
             value: !0
         }), e.install = e.quillEditor = e.Quill = void 0;
@@ -136,6 +138,7 @@
                 default: t
             }
         }
+
         Object.defineProperty(e, "__esModule", {
             value: !0
         });
@@ -196,7 +199,7 @@
             methods: {
                 initialize: function () {
                     var t = this;
-                    this.$el && (this._options = Object.assign({}, this.defaultOptions, this.globalOptions, this.options), this.quill = new s(this.$refs.editor, this._options), this.quill.enable(!1), (this.value || this.content) && this.quill.clipboard.convert(this.value || this.content), this.disabled || this.quill.enable(!0), this.quill.on("selection-change", function (e) {
+                    this.$el && (this._options = Object.assign({}, this.defaultOptions, this.globalOptions, this.options), this.quill = new s(this.$refs.editor, this._options), this.quill.enable(!1), (this.value || this.content) && this.quill.setContents(this.quill.clipboard.convert(this.value || this.content)), this.disabled || this.quill.enable(!0), this.quill.on("selection-change", function (e) {
                         e ? t.$emit("focus", t.quill) : t.$emit("blur", t.quill)
                     }), this.quill.on("text-change", function (e, n, i) {
                         var l = t.$refs.editor.children[0].innerHTML,
@@ -212,10 +215,10 @@
             },
             watch: {
                 content: function (t, e) {
-                    this.quill && (t && t !== this._content ? (this._content = t, this.quill.clipboard.convert(t)) : t || this.quill.setText(""))
+                    this.quill && (t && t !== this._content ? (this._content = t, this.quill.setContents(this.quill.clipboard.convert(t))) : t || this.quill.setText(""))
                 },
                 value: function (t, e) {
-                    this.quill && (t && t !== this._content ? (this._content = t, this.quill.clipboard.convert(t)) : t || this.quill.setText(""))
+                    this.quill && (t && t !== this._content ? (this._content = t, this.quill.setContents(this.quill.clipboard.convert(t))) : t || this.quill.setText(""))
                 },
                 disabled: function (t, e) {
                     this.quill && this.quill.enable(!t)
