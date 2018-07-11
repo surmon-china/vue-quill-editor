@@ -136,7 +136,7 @@ const quillDirective = globalOptions => {
             const range = quill.getSelection()
             quill.root.innerHTML = newData
             setTimeout(() => {
-              quill.setSelection(range)
+              if (range) quill.setSelection(range)
             })
           }
         } else {
