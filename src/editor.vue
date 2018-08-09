@@ -125,7 +125,8 @@
         if (this.quill) {
           if (newVal && newVal !== this._content) {
             this._content = newVal
-            this.quill.pasteHTML(newVal)
+            const delta = this.quill.clipboard.convert(newVal)
+            this.quill.setContents(delta)
           } else if(!newVal) {
             this.quill.setText('')
           }
@@ -136,7 +137,8 @@
         if (this.quill) {
           if (newVal && newVal !== this._content) {
             this._content = newVal
-            this.quill.pasteHTML(newVal)
+            const delta = this.quill.clipboard.convert(newVal)
+            this.quill.setContents(delta)
           } else if(!newVal) {
             this.quill.setText('')
           }
