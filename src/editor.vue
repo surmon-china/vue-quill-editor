@@ -104,14 +104,14 @@
           })
 
           // Update model if text changes
-          this.quill.on('text-change', (delta, oldDelta, source) => {
+          this.quill.on('text-change', (delta, oldContents, source) => {
             let html = this.$refs.editor.children[0].innerHTML
             const quill = this.quill
             const text = this.quill.getText()
             if (html === '<p><br></p>') html = ''
             this._content = html
             this.$emit('input', this._content)
-            this.$emit('change', { html, text, quill })
+            this.$emit('change', { html, text, quill, quillEvent: { delta, oldContents, source } })
           })
 
           // Emit ready event

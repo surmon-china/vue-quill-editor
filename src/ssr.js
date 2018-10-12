@@ -97,7 +97,7 @@ const quillDirective = globalOptions => {
         })
 
         // Update model if text changes
-        quill.on('text-change', (delta, oldDelta, source) => {
+        quill.on('text-change', (delta, oldContents, source) => {
           let html = el.children[0].innerHTML
           const text = quill.getText()
           if (html === '<p><br></p>') {
@@ -108,7 +108,7 @@ const quillDirective = globalOptions => {
             model.callback(html)
           }
           eventEmit(vnode, 'input', html)
-          eventEmit(vnode, 'change', { text, html, quill })
+          eventEmit(vnode, 'change', { text, html, quill, quillEvent: { delta, oldContents, source } })
         })
 
         // Emit ready event

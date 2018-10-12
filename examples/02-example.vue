@@ -74,8 +74,8 @@
       }
     },
     methods: {
-      onEditorChange({ editor, html, text }) {
-        // console.log('editor change!', editor, html, text)
+      onEditorChange({ editor, html, text, quillEvent }) {
+        // console.log('editor change!', editor, html, text, quillEvent)
         this.content = html
       }
     },
