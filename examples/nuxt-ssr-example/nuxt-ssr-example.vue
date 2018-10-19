@@ -43,8 +43,8 @@
       onEditorReady(editor) {
         console.log('editor ready!', editor)
       },
-      onEditorChange({ editor, html, text }) {
-        console.log('editor change!', editor, html, text)
+      onEditorChange({ quill, html, text }) {
+        console.log('editor change!', quill, html, text)
         this.content = html
       }
     }
