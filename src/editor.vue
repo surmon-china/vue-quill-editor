@@ -105,7 +105,7 @@
 
           // Update model if text changes
           this.quill.on('text-change', (delta, oldDelta, source) => {
-            let html = this.$refs.editor.children[0].innerHTML
+            let html = this.$refs.editor.querySelector(".ql-editor").innerHTML
             const quill = this.quill
             const text = this.quill.getText()
             if (html === '<p><br></p>') html = ''
