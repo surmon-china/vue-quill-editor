@@ -11,7 +11,7 @@
 
 # Vue-Quill-Editor
 
-🍡[Quill](https://github.com/quilljs/quill) editor component for Vue.
+[Quill](https://github.com/quilljs/quill) editor component for Vue.
 
 基于 [Quill](https://github.com/quilljs/quill)、适用于 Vue 的富文本编辑器，支持服务端渲染和单页应用。
 
@@ -46,24 +46,22 @@ npm install vue-quill-editor --save
 
 ### Mount
 
-#### Mount with global
+**Mount with global**
 
 ``` javascript
 import Vue from 'vue'
 import VueQuillEditor from 'vue-quill-editor'
 
-// require styles
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
+import 'quill/dist/quill.core.css' // import styles
+import 'quill/dist/quill.snow.css' // for snow theme
+import 'quill/dist/quill.bubble.css' // for bubble theme
 
 Vue.use(VueQuillEditor, /* { default global options } */)
 ```
 
-#### Mount with local component
+**Mount with local component**
 
 ```javascript
-// require styles
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
@@ -77,7 +75,7 @@ export default {
 }
 ```
 
-#### Mount with SSR
+**Mount with SSR**
 
 View [Nuxt.js example code](https://github.com/surmon-china/surmon-china.github.io/tree/source/projects/vue-quill-editor/nuxt).
 
@@ -116,7 +114,7 @@ Quill.register('modules/yourQuillModule', yourQuillModule)
 <script>
   // You can also register Quill modules in the component
   import Quill from 'quill'
-  import { someModule } from '../yourModulePath/someQuillModule.js'
+  import someModule from '../yourModulePath/someQuillModule.js'
   Quill.register('modules/someModule', someModule)
   
   export default {
@@ -155,16 +153,9 @@ Quill.register('modules/yourQuillModule', yourQuillModule)
 </script>
 ```
 
-### Projects Using vue-quill-editor
+### Projects using vue-quill-editor
 - [Tamiat CMS](https://github.com/tamiat/tamiat/)
 - ...
-
-### Modules
-- [quill-image-extend-module](https://github.com/NextBoy/quill-image-extend-module)
-- [quill-image-resize-module](https://github.com/kensnyder/quill-image-resize-module)
-- [quill-image-drop-module](https://github.com/kensnyder/quill-image-drop-module)
-- [quilljs-table](https://github.com/dost/quilljs-table)
-- [more modules...](https://github.com/search?o=desc&q=quill+module&s=stars&type=Repositories&utf8=%E2%9C%93)
 
 
 ### Issues
@@ -173,6 +164,14 @@ Quill.register('modules/yourQuillModule', yourQuillModule)
 - [How vue-quill-editor combine with the syntax highlighter module of highlight.js](https://github.com/surmon-china/vue-quill-editor/issues/39)
 - [配合 element-ui 实现上传图片/视频到七牛 demo](https://github.com/surmon-china/vue-quill-editor/issues/102)
 - [How to fix “Can’t find variable: Quill”, “Quill is undefined”, “window.Quill is undefined” errors when trying to use Quill modules that use Webpack in Nuxt/SSR](https://github.com/surmon-china/vue-quill-editor/issues/171#issuecomment-370253411)
+
+
+### Quill Modules
+- [quill-image-extend-module](https://github.com/NextBoy/quill-image-extend-module)
+- [quill-image-resize-module](https://github.com/kensnyder/quill-image-resize-module)
+- [quill-image-drop-module](https://github.com/kensnyder/quill-image-drop-module)
+- [quilljs-table](https://github.com/dost/quilljs-table)
+- [more modules...](https://github.com/search?o=desc&q=quill+module&s=stars&type=Repositories&utf8=%E2%9C%93)
 
 
 ### Quill
