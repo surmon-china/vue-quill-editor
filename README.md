@@ -19,7 +19,7 @@
 ### Example
 
 - [Component example page](https://surmon-china.github.io/vue-quill-editor/)
-- [CDN example page](https://jsfiddle.net/tng9r8j3/)
+- [CDN example page](https://jsfiddle.net/surmon/fpojgkmy/)
 
 
 ### Install
@@ -28,6 +28,9 @@
 
 ``` bash
 npm install vue-quill-editor --save
+
+# or
+yarn add vue-quill-editor
 ```
 
 **CDN**
