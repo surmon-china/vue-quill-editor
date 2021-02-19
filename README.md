@@ -158,6 +158,7 @@ Quill.register('modules/yourQuillModule', yourQuillModule)
 
 ### Projects using vue-quill-editor
 - [Tamiat CMS](https://github.com/tamiat/tamiat/)
+- [Rapido](https://framagit.org/InfoLibre/rapido)
 - ...
 
 
