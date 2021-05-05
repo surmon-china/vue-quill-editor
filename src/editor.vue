@@ -135,7 +135,7 @@
             if (html === '<p><br></p>') html = ''
             this._content = html
             this.$emit('input', this._content)
-            this.$emit('change', { html, text, quill })
+            this.$emit('change', { html, text, quill, source })
           })
 
           // Emit ready event
