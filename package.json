@@ -1,18 +1,8 @@
 {
-  "name": "vue-quill-editor",
-  "description": "Quill editor component for Vue",
-  "version": "3.0.6",
-  "license": "MIT",
+  "name": "lgc-vue-quill-editor",
+  "description": "Letsgocity Quill editor component for Vue",
+  "version": "0.0.1",
   "private": false,
-  "author": {
-    "name": "Surmon",
-    "email": "surmon@foxmail.com",
-    "url": "https://surmon.me"
-  },
-  "bugs": {
-    "url": "https://github.com/surmon-china/vue-quill-editor/issues"
-  },
-  "homepage": "https://github.com/surmon-china/vue-quill-editor#readme",
   "main": "dist/vue-quill-editor.js",
   "unpkg": "dist/vue-quill-editor.js",
   "jsnext:main": "dist/vue-quill-editor.js",
@@ -24,10 +14,6 @@
     "main": "dist/vue-quill-editor.js",
     "registry": "npm",
     "format": "esm"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/surmon-china/vue-quill-editor.git"
   },
   "keywords": [
     "vue-quill-editor",
@@ -85,6 +71,7 @@
     "file-loader": "^0.10.0",
     "friendly-errors-webpack-plugin": "^1.1.3",
     "function-bind": "^1.1.0",
+    "highlight.js": "^9.12.0",
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.28.0",
     "http-proxy-middleware": "^0.17.3",
@@ -101,11 +88,13 @@
     "karma-webpack": "^2.0.2",
     "lolex": "^1.5.2",
     "mocha": "^3.2.0",
+    "node-sass": "^4.7.2",
     "opn": "^4.0.2",
     "optimize-css-assets-webpack-plugin": "^1.3.0",
     "ora": "^0.3.0",
     "phantomjs-prebuilt": "^2.1.3",
     "raw-loader": "^0.5.1",
+    "sass-loader": "^6.0.6",
     "semver": "^5.3.0",
     "shelljs": "^0.7.4",
     "sinon": "^2.1.0",
@@ -122,10 +111,7 @@
     "webpack-bundle-analyzer": "^2.2.1",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.16.1",
-    "webpack-merge": "^2.6.1",
-    "node-sass": "^4.7.2",
-    "sass-loader": "^6.0.6",
-    "highlight.js": "^9.12.0"
+    "webpack-merge": "^2.6.1"
   },
   "engines": {
     "node": ">= 4.0.0",

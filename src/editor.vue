@@ -1,7 +1,7 @@
 <template>
   <div class="quill-editor">
     <slot name="toolbar"></slot>
-    <div :ref="ref"></div>
+    <div :ref="refName"></div>
   </div>
 </template>
 
@@ -71,7 +71,7 @@
       }
     },
     props: {
-      ref: {
+      refName: {
         type: String,
         default: 'editor'
       },
@@ -108,7 +108,7 @@
           this._options = Object.assign({}, this.defaultOptions, this.globalOptions, this.options)
 
           // Instance
-          this.quill = new Quill(this.$refs[this.ref], this._options)
+          this.quill = new Quill(this.$refs[this.refName], this._options)
           
           this.quill.enable(false)
 
@@ -133,7 +133,7 @@
 
           // Update model if text changes
           this.quill.on('text-change', (delta, oldDelta, source) => {
-            let html = this.$refs[this.ref].children[0].innerHTML
+            let html = this.$refs[this.refName].children[0].innerHTML
             const quill = this.quill
             const text = this.quill.getText()
             if (html === '<p><br></p>') html = ''
