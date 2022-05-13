@@ -12,7 +12,7 @@
   const Quill = window.Quill || _Quill
   const defaultOptions = {
     theme: 'snow',
-    boundary: document.body,
+    bounds: document.body,
     modules: {
       toolbar: [
         ['bold', 'italic', 'underline', 'strike'],
