@@ -1,7 +1,5 @@
-
 const path = require('path')
 const webpack = require('webpack')
-
 const resolve = dir => path.join(__dirname, '..', dir)
 
 const env = process.env.NODE_ENV === 'testing'
