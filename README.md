@@ -14,6 +14,22 @@
 
 ---
 
+### DEPRECATED ⚠️
+
+Unfortunately, since the [Quill](https://github.com/quilljs/quill) project has effectively stopped being maintained, `vue-quill-editor` will be **DEPRECATED** and will no longer support Vue3; if you're looking for a rich text editor, I recommend migrating to [**tiptap**](https://tiptap.dev/installation/vue3), which is a much better alternative.
+
+I encourage folks to fork this repository and, if a fork gets popular, I will link to it in this README.
+(If Quill is updated again someday, this project will probably continue to be updated as well.
+
+The stalled Quill project can be found in these issues:
+
+- [Is quill dead?](https://github.com/quilljs/quill/issues/3359)
+- [Project still active?](https://github.com/quilljs/quill/issues/3112)
+- [Switching editor lib as QuillJS is dead](https://github.com/EvitanRelta/markgh/issues/3)
+- [What's the status of this project? It's been over 2 years since 1.3.7 release.](https://github.com/quilljs/quill/issues/3521)
+
+---
+
 ### Example
 
 - [Component examples](https://surmon-china.github.io/vue-quill-editor)
