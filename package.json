@@ -3,32 +3,7 @@
   "description": "Quill editor component for Vue",
   "version": "3.0.6",
   "license": "MIT",
-  "private": false,
-  "author": {
-    "name": "Surmon",
-    "email": "surmon@foxmail.com",
-    "url": "https://surmon.me"
-  },
-  "bugs": {
-    "url": "https://github.com/surmon-china/vue-quill-editor/issues"
-  },
-  "homepage": "https://github.com/surmon-china/vue-quill-editor#readme",
-  "main": "dist/vue-quill-editor.js",
-  "unpkg": "dist/vue-quill-editor.js",
-  "jsnext:main": "dist/vue-quill-editor.js",
-  "files": [
-    "dist",
-    "src"
-  ],
-  "jspm": {
-    "main": "dist/vue-quill-editor.js",
-    "registry": "npm",
-    "format": "esm"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/surmon-china/vue-quill-editor.git"
-  },
+  "author": "Surmon",
   "keywords": [
     "vue-quill-editor",
     "vue quill",
@@ -37,6 +12,23 @@
     "vue web editor",
     "vue editor"
   ],
+  "homepage": "https://github.surmon.me/vue-quill-editor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/surmon-china/vue-quill-editor.git"
+  },
+  "files": [
+    "CHANGELOG.md",
+    "dist"
+  ],
+  "main": "dist/vue-quill-editor.js",
+  "unpkg": "dist/vue-quill-editor.js",
+  "jsnext:main": "dist/vue-quill-editor.js",
+  "jspm": {
+    "main": "dist/vue-quill-editor.js",
+    "registry": "npm",
+    "format": "esm"
+  },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config config/build.conf.js",
     "unit": "cross-env BABEL_ENV=test NODE_ENV=testing karma start test/unit/karma.conf.js --watch",
@@ -126,9 +118,5 @@
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
     "highlight.js": "^9.12.0"
-  },
-  "engines": {
-    "node": ">= 4.0.0",
-    "npm": ">= 3.0.0"
   }
 }
