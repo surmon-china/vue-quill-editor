@@ -82,9 +82,9 @@ export default {
 }
 ```
 
-**Mount with SSR**
+**SSR component**
 
-View [Nuxt.js example code](https://github.com/surmon-china/surmon-china.github.io/tree/source/legacies/vue-quill-editor/nuxt).
+See [Nuxt.js example code](https://github.com/surmon-china/surmon-china.github.io/tree/source/legacies/vue-quill-editor/nuxt).
 
 ### Register Quill module
 
