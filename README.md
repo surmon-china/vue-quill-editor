@@ -176,11 +176,6 @@ Quill.register('modules/yourQuillModule', yourQuillModule)
 </script>
 ```
 
-### Projects using vue-quill-editor
-- [Tamiat CMS](https://github.com/tamiat/tamiat/)
-- ...
-
-
 ### Issues
 - [Add attributes from toolbar options](https://github.com/quilljs/quill/issues/1084)
 - [Option to insert an image from a URL](https://github.com/quilljs/quill/issues/893)
