@@ -14,7 +14,7 @@
 
 ---
 
-### DEPRECATED ⚠️
+### DEPRECATED ‼️
 
 Unfortunately, since the [Quill](https://github.com/quilljs/quill) project has effectively stopped being maintained, `vue-quill-editor` will be **DEPRECATED** and will no longer support Vue3; if you're looking for a rich text editor, I recommend migrating to [**tiptap**](https://tiptap.dev/installation/vue3), which is a much better alternative.
 
