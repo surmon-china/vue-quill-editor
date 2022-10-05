@@ -105,7 +105,9 @@
 
           // Instance
           this.quill = new Quill(this.$refs.editor, this._options)
-          
+          this.quill.root.addEventListener('blur', e =>
+            this.quill.setSelection(null)
+          )
           this.quill.enable(false)
 
           // Set editor content
