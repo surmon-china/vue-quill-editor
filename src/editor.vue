@@ -92,6 +92,8 @@
       this.initialize()
     },
     beforeDestroy() {
+      this.quill.off('selection-change', this.handleSelectionChange)
+      this.quill.off('text-change', this.handleTextChange)
       this.quill = null
       delete this.quill
     },
@@ -119,28 +121,32 @@
           }
 
           // Mark model as touched if editor lost focus
-          this.quill.on('selection-change', range => {
-            if (!range) {
-              this.$emit('blur', this.quill)
-            } else {
-              this.$emit('focus', this.quill)
-            }
-          })
+          this.quill.on('selection-change', this.handleSelectionChange)
 
           // Update model if text changes
-          this.quill.on('text-change', (delta, oldDelta, source) => {
-            let html = this.$refs.editor.children[0].innerHTML
-            const quill = this.quill
-            const text = this.quill.getText()
-            if (html === '<p><br></p>') html = ''
-            this._content = html
-            this.$emit('input', this._content)
-            this.$emit('change', { html, text, quill })
-          })
+          this.quill.on('text-change', this.handleTextChange)
 
           // Emit ready event
           this.$emit('ready', this.quill)
         }
+      },
+      // handle selection-change
+      handleSelectionChange(range) {
+        if (!range) {
+          this.$emit('blur', this.quill)
+        } else {
+          this.$emit('focus', this.quill)
+        }
+      },
+      // handle text-change
+      handleTextChange(delta, oldDelta, source) {
+        let html = this.$refs.editor.children[0].innerHTML
+        const quill = this.quill
+        const text = this.quill.getText()
+        if (html === '<p><br></p>') html = ''
+        this._content = html
+        this.$emit('input', this._content)
+        this.$emit('change', { html, text, quill })
       }
     },
     watch: {
